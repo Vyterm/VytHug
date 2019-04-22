@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="快照遍历">
+      <UniqueIdentifier>{d0c02716-ff1a-4b49-8f02-1ae40b75a7e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="文件信息">
+      <UniqueIdentifier>{2d5ac351-f8f4-4b8c-9869-fbee35f9403c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="自定义控件">
+      <UniqueIdentifier>{abb73e11-aa2d-4e0b-8d35-b51797a8d953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="第三方代码">
+      <UniqueIdentifier>{f77f17e3-68a4-4101-8abc-8d9a34e66fa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PE解析">
+      <UniqueIdentifier>{e11f42bb-c6ac-4938-b30a-496db5d28dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="附属功能">
+      <UniqueIdentifier>{483d8307-fbb4-4c36-8dae-a0ff41761daa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="软件管理">
+      <UniqueIdentifier>{c9ba84ff-925f-4ca2-9146-e543dd14ebed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="攻击病毒">
+      <UniqueIdentifier>{bec2a545-0040-4734-b025-bc9a85788716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="首页窗口">
+      <UniqueIdentifier>{6d99bd6a-84ef-4432-b734-93a3d9a108a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="编译文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VytHug.h">
+      <Filter>编译文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>编译文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>编译文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytSmarters.hpp">
+      <Filter>自定义控件</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartTab.hpp">
+      <Filter>自定义控件</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartList.hpp">
+      <Filter>自定义控件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytFileUtils.hpp">
+      <Filter>文件信息</Filter>
+    </ClInclude>
+    <ClInclude Include="VytSnapshotUtils.hpp">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>第三方代码</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeLoaderDlg.h">
+      <Filter>PE解析</Filter>
+    </ClInclude>
+    <ClInclude Include="VytCleanerDlg.h">
+      <Filter>文件信息</Filter>
+    </ClInclude>
+    <ClInclude Include="VytTaskManagerDlg.h">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
+    <ClInclude Include="VytTediousDlg.h">
+      <Filter>附属功能</Filter>
+    </ClInclude>
+    <ClInclude Include="VytSoftwareDlg.h">
+      <Filter>软件管理</Filter>
+    </ClInclude>
+    <ClInclude Include="VytWindowsDlg.h">
+      <Filter>软件管理</Filter>
+    </ClInclude>
+    <ClInclude Include="VytServiceDlg.h">
+      <Filter>软件管理</Filter>
+    </ClInclude>
+    <ClInclude Include="VytAntiVirusDlg.h">
+      <Filter>攻击病毒</Filter>
+    </ClInclude>
+    <ClInclude Include="VytHugDlg.h">
+      <Filter>首页窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SmartTab.cpp">
+      <Filter>自定义控件</Filter>
+    </ClCompile>
+    <ClCompile Include="SmartList.cpp">
+      <Filter>自定义控件</Filter>
+    </ClCompile>
+    <ClCompile Include="VytSnapshotUtils.cpp">
+      <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytFileUtils.cpp">
+      <Filter>文件信息</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>第三方代码</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeLoaderDlg.cpp">
+      <Filter>PE解析</Filter>
+    </ClCompile>
+    <ClCompile Include="VytCleanerDlg.cpp">
+      <Filter>文件信息</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTaskManagerDlg.cpp">
+      <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTediousDlg.cpp">
+      <Filter>附属功能</Filter>
+    </ClCompile>
+    <ClCompile Include="VytSoftwareDlg.cpp">
+      <Filter>软件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="VytWindowsDlg.cpp">
+      <Filter>软件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="VytServiceDlg.cpp">
+      <Filter>软件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="VytAntiVirusDlg.cpp">
+      <Filter>攻击病毒</Filter>
+    </ClCompile>
+    <ClCompile Include="VytHugDlg.cpp">
+      <Filter>首页窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>编译文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VytHug.cpp">
+      <Filter>编译文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VytHug.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\VytHug.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\VytHug.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

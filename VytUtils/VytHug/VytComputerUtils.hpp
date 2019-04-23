@@ -8,8 +8,10 @@ namespace vyt
 	public:
 		using sizetype = unsigned __int64;
 		static int CpuUtilization();
-		static int MemoryUtilization();
+		static int MemoryUtilization(); 
 		static sizetype Cleanmemory();
+		static bool CheckAdmin();
+		static bool RunasAdmin();
 		static void Poweroff();
 		static void Restart();
 		static void Logout();

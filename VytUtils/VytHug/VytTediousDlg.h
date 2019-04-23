@@ -17,6 +17,7 @@ public:
 #endif
 
 private:
+	void CheckAdmin();
 	void UpdateUtilization();
 
 protected:
@@ -27,6 +28,7 @@ public:
 	virtual BOOL OnInitDialog();
 	CProgressCtrl m_cpuProgress;
 	CProgressCtrl m_memoryProgress;
+	CButton m_rootbutton;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnBnClickedTeCleanmemory();
 	afx_msg void OnBnClickedTePoweroff();
@@ -34,4 +36,5 @@ public:
 	afx_msg void OnBnClickedTeLogoff();
 	afx_msg void OnBnClickedTeDormant();
 	afx_msg void OnBnClickedTeLock();
+	afx_msg void OnBnClickedTePowerraising();
 };

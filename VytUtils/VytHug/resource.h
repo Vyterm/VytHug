@@ -177,6 +177,7 @@
 #define IDC_TE_LOGOFF                   1044
 #define IDC_TE_GROUPCPU                 1045
 #define IDC_TE_GROUPMEMORY              1046
+#define IDC_TE_POWERRAISING             1047
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773

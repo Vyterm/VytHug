@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "SmartList.hpp"
 // VytTaHeapDlg 对话框
 
 class VytTaHeapDlg : public CDialogEx
@@ -16,10 +16,14 @@ public:
 	enum { IDD = IDD_TA_HEAP };
 #endif
 
+public:
+	void ShowHeap(DWORD processID);
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CListCtrl m_heaps;
+	vyt::SmartList m_heaps;
+	virtual BOOL OnInitDialog();
 };

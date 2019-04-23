@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "SmartList.hpp"
 // VytTaThreadDlg 对话框
 
 class VytTaThreadDlg : public CDialogEx
@@ -16,10 +16,15 @@ public:
 	enum { IDD = IDD_TA_THREAD };
 #endif
 
+public:
+	CString GetThreadStatus(DWORD threadID);
+	void ShowThread(DWORD processID);
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CListCtrl m_threads;
+	vyt::SmartList m_threads;
+	virtual BOOL OnInitDialog();
 };

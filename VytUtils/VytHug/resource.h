@@ -192,13 +192,14 @@
 #define ID_SO_UPDATE                    32795
 #define ID_SO_REFRESH                   32796
 #define ID_SO_EXPLORER                  32797
+#define ID_TAP_HEAP                     32798
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
-#define _APS_NEXT_COMMAND_VALUE         32798
+#define _APS_NEXT_COMMAND_VALUE         32799
 #define _APS_NEXT_CONTROL_VALUE         1039
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

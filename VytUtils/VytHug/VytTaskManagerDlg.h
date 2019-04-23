@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "SmartList.hpp"
+#include "VytTaProcessDlg.h"
 // VytTaskManagerDlg 对话框
 
 class VytTaskManagerDlg : public CDialogEx
@@ -17,6 +18,9 @@ public:
 #endif
 
 private:
+	int m_activeProcessIndex;
+private:
+	void ShowProcessInfo(E_ProcessInfo info = E_ProcessInfo::Thread);
 	void UpdateProcesses();
 
 protected:
@@ -26,4 +30,11 @@ protected:
 public:
 	vyt::SmartList m_processes;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnShowProcess(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnTrackProcess(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnTapThread();
+	afx_msg void OnTapModule();
+	afx_msg void OnTapHeap();
+	afx_msg void OnTapTerminate();
+	afx_msg void OnTapRefresh();
 };

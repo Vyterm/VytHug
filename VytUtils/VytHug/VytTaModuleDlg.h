@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "SmartList.hpp"
 // VytTaModuleDlg 对话框
 
 class VytTaModuleDlg : public CDialogEx
@@ -16,10 +16,14 @@ public:
 	enum { IDD = IDD_TA_MODULE };
 #endif
 
+public:
+	void ShowModule(DWORD processID);
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CListCtrl m_modules;
+	vyt::SmartList m_modules;
+	virtual BOOL OnInitDialog();
 };

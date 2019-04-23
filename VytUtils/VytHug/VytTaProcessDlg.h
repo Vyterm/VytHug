@@ -1,14 +1,20 @@
 ﻿#pragma once
 
+#include "SmartTab.hpp"
 
-// VytTaProcessDlg 对话框
+enum class E_ProcessInfo
+{
+	Thread,
+	Module,
+	Heap,
+};
 
 class VytTaProcessDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(VytTaProcessDlg)
 
 public:
-	VytTaProcessDlg(CWnd* pParent = nullptr);   // 标准构造函数
+	VytTaProcessDlg(DWORD processID, E_ProcessInfo info = E_ProcessInfo::Thread, CWnd* pParent = nullptr);   // 标准构造函数
 	virtual ~VytTaProcessDlg();
 
 // 对话框数据
@@ -16,10 +22,15 @@ public:
 	enum { IDD = IDD_TA_PROCESS };
 #endif
 
+private:
+	DWORD m_processID;
+	E_ProcessInfo m_info;
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CTabCtrl m_infotab;
+	vyt::SmartTab m_infotab;
+	virtual BOOL OnInitDialog();
 };

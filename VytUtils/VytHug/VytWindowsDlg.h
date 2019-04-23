@@ -16,6 +16,9 @@ public:
 	enum { IDD = IDD_WINDOWS };
 #endif
 
+private:
+	void UpdateWindows();
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 

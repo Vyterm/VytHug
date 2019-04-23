@@ -26,3 +26,15 @@ void vyt::RegeditUtils::EnumServices(std::function<void(const ENUM_SERVICE_STATU
 	delete[] serviceStatusBuffer;
 	CloseServiceHandle(scm);
 }
+
+static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
+{
+	auto &action = *(std::function<void(HWND)>*)lParam;
+	action(hwnd);
+	return TRUE;
+}
+
+void vyt::RegeditUtils::EnumWindows(std::function<void(HWND)> windowAction)
+{
+	::EnumWindows(&EnumWindowsProc, (LPARAM)&windowAction);
+}

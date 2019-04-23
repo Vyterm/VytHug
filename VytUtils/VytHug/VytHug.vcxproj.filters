@@ -95,6 +95,18 @@
     <ClInclude Include="Resource.h">
       <Filter>资源文件</Filter>
     </ClInclude>
+    <ClInclude Include="VytTaHeapDlg.h">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
+    <ClInclude Include="VytTaModuleDlg.h">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
+    <ClInclude Include="VytTaProcessDlg.h">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
+    <ClInclude Include="VytTaThreadDlg.h">
+      <Filter>快照遍历</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmartTab.cpp">
@@ -144,6 +156,18 @@
     </ClCompile>
     <ClCompile Include="VytHug.cpp">
       <Filter>编译文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTaHeapDlg.cpp">
+      <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTaModuleDlg.cpp">
+      <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTaProcessDlg.cpp">
+      <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytTaThreadDlg.cpp">
+      <Filter>快照遍历</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

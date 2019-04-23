@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "SmartList.hpp"
 // VytTaskManagerDlg 对话框
 
 class VytTaskManagerDlg : public CDialogEx
@@ -16,11 +16,14 @@ public:
 	enum { IDD = IDD_TASKMANAGER };
 #endif
 
+private:
+	void UpdateProcesses();
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CListCtrl m_processes;
+	vyt::SmartList m_processes;
 	virtual BOOL OnInitDialog();
 };

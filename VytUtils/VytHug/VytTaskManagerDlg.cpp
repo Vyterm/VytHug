@@ -5,7 +5,8 @@
 #include "VytHug.h"
 #include "VytTaskManagerDlg.h"
 #include "afxdialogex.h"
-
+#include "VytSnapshotUtils.hpp"
+using namespace vyt;
 
 // VytTaskManagerDlg 对话框
 
@@ -19,6 +20,16 @@ VytTaskManagerDlg::VytTaskManagerDlg(CWnd* pParent /*=nullptr*/)
 
 VytTaskManagerDlg::~VytTaskManagerDlg()
 {
+}
+
+void VytTaskManagerDlg::UpdateProcesses()
+{
+	m_processes.DeleteAllItems();
+	vyt::EnumProcess([&](PROCESSENTRY32 processInfo) {
+		CString processText;
+		processText.Format(_T("%6d"), processInfo.th32ProcessID);
+		m_processes.InsertTexts(processText, 1, CString(processInfo.szExeFile));
+	});
 }
 
 void VytTaskManagerDlg::DoDataExchange(CDataExchange* pDX)
@@ -39,7 +50,10 @@ BOOL VytTaskManagerDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  在此添加额外的初始化
+	m_processes.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
+	m_processes.InsertColumn(Str(IDS_PID), 100);
+	m_processes.InsertColumn(Str(IDS_PROCESSPATH), 700);
+	UpdateProcesses();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE

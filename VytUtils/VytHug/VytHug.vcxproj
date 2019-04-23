@@ -199,7 +199,11 @@
     <ClInclude Include="VytHugDlg.h" />
     <ClInclude Include="VytSmarters.hpp" />
     <ClInclude Include="VytSoftwareDlg.h" />
+    <ClInclude Include="VytTaHeapDlg.h" />
+    <ClInclude Include="VytTaModuleDlg.h" />
+    <ClInclude Include="VytTaProcessDlg.h" />
     <ClInclude Include="VytTaskManagerDlg.h" />
+    <ClInclude Include="VytTaThreadDlg.h" />
     <ClInclude Include="VytTediousDlg.h" />
     <ClInclude Include="VytWindowsDlg.h" />
   </ItemGroup>
@@ -222,7 +226,11 @@
     <ClCompile Include="VytHug.cpp" />
     <ClCompile Include="VytHugDlg.cpp" />
     <ClCompile Include="VytSoftwareDlg.cpp" />
+    <ClCompile Include="VytTaHeapDlg.cpp" />
+    <ClCompile Include="VytTaModuleDlg.cpp" />
+    <ClCompile Include="VytTaProcessDlg.cpp" />
     <ClCompile Include="VytTaskManagerDlg.cpp" />
+    <ClCompile Include="VytTaThreadDlg.cpp" />
     <ClCompile Include="VytTediousDlg.cpp" />
     <ClCompile Include="VytWindowsDlg.cpp" />
   </ItemGroup>

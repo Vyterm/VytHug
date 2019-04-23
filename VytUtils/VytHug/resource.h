@@ -46,20 +46,24 @@
 #define IDD_DIALOG1                     133
 #define IDD_TEDIOUS                     133
 #define IDS_HEAPIMAGE                   134
-#define IDD_TMPV_PROCESSINFO            135
+#define IDD_TA_PROCESSINFO              135
 #define IDS_HEAPSTATUS                  135
-#define IDD_TMPV_MODULE                 136
+#define IDD_DIALOG2                     135
+#define IDD_TA_PROCESS                  135
+#define IDD_TA_MODULE                   136
 #define IDS_MODULE                      136
-#define IDD_TMPV_THREAD                 137
+#define IDD_TA_THREAD                   137
 #define IDS_HEAP                        137
+#define IDR_TA_TRACKMENU                137
 #define IDS_THREADRUNNING               138
-#define IDD_TMPV_THREAD2                138
 #define IDS_THREADSUSPENDED             139
+#define IDR_SE_TRACKMENU                139
 #define IDS_HEAP_USED                   140
+#define IDR_SO_TRACKMENU                140
 #define IDR_TM_TRACKMENU                141
 #define IDS_HEAP_MOVEABLE               141
 #define IDS_HEAP_FREE                   142
-#define IDD_TMPV_HEAP                   143
+#define IDD_TA_HEAP                     143
 #define IDS_TERMINATEP_FAILED           143
 #define IDS_TERMINATET_FAILED           144
 #define IDS_SUSPEND_FAILED              145
@@ -113,6 +117,7 @@
 #define IDD_ANTIVIRUS                   310
 #define IDC_TAB1                        1000
 #define IDC_HOME_TAB                    1000
+#define IDC_TAM_TAB                     1000
 #define IDC_BUTTON1                     1001
 #define IDC_CL_CLEANBUTTON              1001
 #define IDC_BUTTON2                     1002
@@ -157,13 +162,43 @@
 #define IDC_SO_LIST                     1036
 #define IDC_WI_LIST                     1037
 #define IDC_TA_LIST                     1038
+#define IDC_TA_THREADS                  1039
+#define IDC_TA_MODULES                  1040
+#define IDC_TA_HEAPS                    1041
+#define ID_32771                        32771
+#define ID_32772                        32772
+#define ID_32773                        32773
+#define ID_32774                        32774
+#define ID_32775                        32775
+#define ID_32776                        32776
+#define ID_32777                        32777
+#define ID_32778                        32778
+#define ID_32779                        32779
+#define ID_32780                        32780
+#define ID_32781                        32781
+#define ID_TAP_THREAD                   32782
+#define ID_TAP_MODULE                   32783
+#define ID_TAP_TERMINATE                32784
+#define ID_TAP_REFRESH                  32785
+#define ID_TAT_SUSPEND                  32786
+#define ID_TAT_RESUME                   32787
+#define ID_TAT_TERMINATE                32788
+#define ID_SO_RUN                       32789
+#define ID_SO_STOP                      32790
+#define ID_SE_REFRESH                   32791
+#define ID_SE_RUN                       32792
+#define ID_SE_STOP                      32793
+#define ID_SO_UNINSTALL                 32794
+#define ID_SO_UPDATE                    32795
+#define ID_SO_REFRESH                   32796
+#define ID_SO_EXPLORER                  32797
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32771
+#define _APS_NEXT_RESOURCE_VALUE        139
+#define _APS_NEXT_COMMAND_VALUE         32798
 #define _APS_NEXT_CONTROL_VALUE         1039
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

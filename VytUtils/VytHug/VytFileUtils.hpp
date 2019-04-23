@@ -6,11 +6,16 @@
 
 namespace vyt
 {
-	void EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction);
-	CString FileTimeToTimeString(const FILETIME &time);
-	CString FileSizeToString(QWORD nFileSizeHigh, DWORD nFileSizeLow);
-	void QueryFileAttributes(const CString &path, const WIN32_FIND_DATA &filedata, CString &name, CString &attr,
-		CString &createTime, CString &visitTime, CString &modifyTime, CString &size, CString &md5);
+	class FileUtils
+	{
+	public:
+		static void EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction);
+		inline static bool IsDirectory(const WIN32_FIND_DATA &filedata);
+		static CString FileTimeToTimeString(const FILETIME &time);
+		static CString FileSizeToString(QWORD nFileSizeHigh, QWORD nFileSizeLow);
+		static void QueryFileAttributes(const CString &path, const WIN32_FIND_DATA &filedata, CString &name, CString &attr,
+			CString &createTime, CString &visitTime, CString &modifyTime, CString &size, CString &md5);
+	};
 }
 
 #endif

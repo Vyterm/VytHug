@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "resource.h"
 #include "VytFileUtils.hpp"
 #include "md5.h"
@@ -7,26 +7,31 @@ using namespace vyt;
 
 namespace vyt
 {
-	void EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction)
+	void FileUtils::EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction)
 	{
-		// 1. Ê¹ÓÃÍ¨Åä·û *£¬¹¹½¨×ÓÄ¿Â¼ºÍÎÄ¼ş¼ĞÂ·¾¶µÄ×Ö·û´®
-		TCHAR szFilePath[MAX_PATH];
-		StringCbCopy(szFilePath, MAX_PATH, path);
-		StringCbCat(szFilePath, MAX_PATH, _T("\\*"));
-		// 2. »ñÈ¡µÚÒ»¸öÎÄ¼ş/Ä¿Â¼£¬²¢»ñµÃ²éÕÒ¾ä±ú
+		// 1. ä½¿ç”¨é€šé…ç¬¦ *ï¼Œæ„å»ºå­ç›®å½•å’Œæ–‡ä»¶å¤¹è·¯å¾„çš„å­—ç¬¦ä¸²
+		if (path.GetLength() == 0 || (path[path.GetLength() - 1] != _T('\\') && path[path.GetLength() - 1] != _T('/')))
+			path += _T('\\');
+		CString enumpath = path + _T('*');
+		// 2. è·å–ç¬¬ä¸€ä¸ªæ–‡ä»¶/ç›®å½•ï¼Œå¹¶è·å¾—æŸ¥æ‰¾å¥æŸ„
 		WIN32_FIND_DATA filedata;
-		HANDLE file = FindFirstFile(szFilePath, &filedata);
+		HANDLE file = FindFirstFile(enumpath, &filedata);
 		if (INVALID_HANDLE_VALUE == file) return;
-		// 3. ¿ªÊ¼Ñ­»·±éÀú»ñÈ¡ÎÄ¼şÃû
+		// 3. å¼€å§‹å¾ªç¯éå†è·å–æ–‡ä»¶å
 		do
 		{
-			// 3.1. ÅĞ¶ÏÊÇ·ñÊÇ±¾¼¶Ä¿Â¼»òÉÏ¼¶Ä¿Â¼µÄÃû³Æ£¬ÊÇµÄ»°Ôò½áÊø±¾´ÎÑ­»·
+			// 3.1. åˆ¤æ–­æ˜¯å¦æ˜¯æœ¬çº§ç›®å½•æˆ–ä¸Šçº§ç›®å½•çš„åç§°ï¼Œæ˜¯çš„è¯åˆ™ç»“æŸæœ¬æ¬¡å¾ªç¯
 			if (!_tcscmp(filedata.cFileName, _T(".")) || !_tcscmp(filedata.cFileName, _T(".."))) continue;
 			fileAction(path, filedata);
 		} while (FindNextFile(file, &filedata));
 	}
 
-	CString FileTimeToTimeString(const FILETIME & time)
+	bool FileUtils::IsDirectory(const WIN32_FIND_DATA &filedata)
+	{
+		return (filedata.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY;
+	}
+
+	CString FileUtils::FileTimeToTimeString(const FILETIME & time)
 	{
 		FILETIME ftLocal;
 		FileTimeToLocalFileTime(&time, &ftLocal);
@@ -41,7 +46,7 @@ namespace vyt
 		return timeString;
 	}
 
-	CString FileSizeToString(QWORD nFileSizeHigh, DWORD nFileSizeLow)
+	CString FileUtils::FileSizeToString(QWORD nFileSizeHigh, QWORD nFileSizeLow)
 	{
 		QWORD fileSize = (nFileSizeHigh << 32) + nFileSizeLow;
 		CString sizeUnitStrings[] = { _T("B"), _T("KB"), _T("MB"), _T("GB") };
@@ -59,11 +64,11 @@ namespace vyt
 		return fileSizeString;
 	}
 
-	void QueryFileAttributes(const CString & path, const WIN32_FIND_DATA & filedata, CString & name, CString & attr,
+	void FileUtils::QueryFileAttributes(const CString & path, const WIN32_FIND_DATA & filedata, CString & name, CString & attr,
 		CString & createTime, CString & visitTime, CString & modifyTime, CString & size, CString & md5)
 	{
 		name = filedata.cFileName;
-		attr = (filedata.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY ? Str(IDS_DIRECTORY) : Str(IDS_FILE);
+		attr = IsDirectory(filedata) ? Str(IDS_DIRECTORY) : Str(IDS_FILE);
 		createTime = _T("");
 		visitTime = _T("");
 		modifyTime = _T("");
@@ -74,18 +79,18 @@ namespace vyt
 		WIN32_FILE_ATTRIBUTE_DATA wfad = {};
 		if (GetFileAttributesEx(filename, GetFileExInfoStandard, &wfad))
 		{
-			// 1. »ñÈ¡Èô¸ÉÊ±¼ä´Á
+			// 1. è·å–è‹¥å¹²æ—¶é—´æˆ³
 			createTime = FileTimeToTimeString(wfad.ftCreationTime);
 			visitTime = FileTimeToTimeString(wfad.ftLastAccessTime);
 			modifyTime = FileTimeToTimeString(wfad.ftLastWriteTime);
 			if ((wfad.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY) != FILE_ATTRIBUTE_DIRECTORY)
 			{
-				// 2. ÏÔÊ¾ÎÄ¼ş´óĞ¡
+				// 2. æ˜¾ç¤ºæ–‡ä»¶å¤§å°
 				size = FileSizeToString(wfad.nFileSizeHigh, wfad.nFileSizeLow);
-				// 3. ÏÔÊ¾ÎÄ¼şMD5Öµ
+				// 3. æ˜¾ç¤ºæ–‡ä»¶MD5å€¼
 				md5 = md5FileValue(filename);
 			}
-			// 4. ÏÔÊ¾ÎÄ¼ş»òÎÄ¼ş¼ĞÊôĞÔ
+			// 4. æ˜¾ç¤ºæ–‡ä»¶æˆ–æ–‡ä»¶å¤¹å±æ€§
 			if ((wfad.dwFileAttributes&FILE_ATTRIBUTE_HIDDEN) == FILE_ATTRIBUTE_HIDDEN)
 				attr = Str(IDS_HIDE) + attr;
 		}

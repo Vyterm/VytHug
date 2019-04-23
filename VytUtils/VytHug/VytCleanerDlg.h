@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "SmartList.hpp"
-
+#include <functional>
 // VytCleanerDlg 对话框
 
 class VytCleanerDlg : public CDialogEx
@@ -15,6 +15,9 @@ public:
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CLEANER };
 #endif
+
+private:
+	void RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter = nullptr);
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

@@ -16,6 +16,9 @@ public:
 	enum { IDD = IDD_SERVICE };
 #endif
 
+private:
+	void UpdateServices();
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 

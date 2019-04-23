@@ -106,6 +106,16 @@
 #define IDS_WINDOW_CLASS                182
 #define IDS_ORDER                       183
 #define IDS_POSITION                    184
+#define IDS_STOPPING                    185
+#define IDS_STARTING                    186
+#define IDS_CLOSEING                    187
+#define IDS_CLOSED                      188
+#define IDS_CONTINUING                  189
+#define IDS_SERVICE_BOOT_START          190
+#define IDS_INVALID                     191
+#define IDS_SERVICE_SYSTEM_START        192
+#define IDS_SERVICE_SYSTEM              193
+#define IDS_SERVICE_DRIVER              194
 #define IDD_ABOUTBOX                    200
 #define IDD_TASKMANAGER_DIALOG          202
 #define IDD_VYTHUG_DIALOG               302

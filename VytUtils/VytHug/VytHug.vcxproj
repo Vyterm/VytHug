@@ -96,6 +96,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -118,6 +119,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -144,6 +146,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -170,6 +173,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -190,6 +194,7 @@
     <ClInclude Include="VytAntiVirusDlg.h" />
     <ClInclude Include="VytComputerUtils.hpp" />
     <ClInclude Include="VytPeLoaderDlg.h" />
+    <ClInclude Include="VytRegeditUtils.hpp" />
     <ClInclude Include="VytServiceDlg.h" />
     <ClInclude Include="VytSnapshotUtils.hpp" />
     <ClInclude Include="stdafx.h" />
@@ -216,6 +221,7 @@
     <ClCompile Include="VytComputerUtils.cpp" />
     <ClCompile Include="VytFileUtils.cpp" />
     <ClCompile Include="VytPeLoaderDlg.cpp" />
+    <ClCompile Include="VytRegeditUtils.cpp" />
     <ClCompile Include="VytServiceDlg.cpp" />
     <ClCompile Include="VytSnapshotUtils.cpp" />
     <ClCompile Include="stdafx.cpp">

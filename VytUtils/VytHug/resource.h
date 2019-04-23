@@ -126,8 +126,10 @@
 #define IDC_CL_FILELIST                 1003
 #define IDC_BUTTON4                     1004
 #define IDC_CL_CPUPROGRESS              1004
+#define IDC_TE_DORMANT                  1004
 #define IDC_BUTTON5                     1005
 #define IDC_CL_MEMORYPROGRESS           1005
+#define IDC_TE_LOCK                     1005
 #define IDC_BUTTON6                     1006
 #define IDC_CL_VIEWPATH                 1006
 #define IDC_CL_VIEWPATHBUTTON           1006
@@ -151,7 +153,9 @@
 #define IDC_CL_INFOLIST                 1024
 #define IDC_CL_HELPTEXT                 1025
 #define IDC_PROGRESS1                   1026
+#define IDC_TE_PROGRESSCPU              1026
 #define IDC_PROGRESS2                   1027
+#define IDC_TE_PROGRESSMEMORY           1027
 #define IDC_LIST1                       1028
 #define IDC_LIST2                       1030
 #define IDC_RADIO1                      1031
@@ -163,8 +167,16 @@
 #define IDC_WI_LIST                     1037
 #define IDC_TA_LIST                     1038
 #define IDC_TA_THREADS                  1039
+#define IDC_TE_CPUTEXT                  1039
 #define IDC_TA_MODULES                  1040
+#define IDC_TE_MEMORYTEXT               1040
 #define IDC_TA_HEAPS                    1041
+#define IDC_TE_CLEANMEMORY              1041
+#define IDC_TE_POWEROFF                 1042
+#define IDC_TE_RESTART                  1043
+#define IDC_TE_LOGOFF                   1044
+#define IDC_TE_GROUPCPU                 1045
+#define IDC_TE_GROUPMEMORY              1046
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -200,7 +212,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1039
+#define _APS_NEXT_CONTROL_VALUE         1047
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

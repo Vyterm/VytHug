@@ -25,7 +25,7 @@ VytTaHeapDlg::~VytTaHeapDlg()
 void VytTaHeapDlg::ShowHeap(DWORD processID)
 {
 	m_heaps.DeleteAllItems();
-	vyt::EnumHeap(processID, [&](HEAPENTRY32 heapInfo) {
+	vyt::SnapshotUtils::EnumHeap(processID, [&](HEAPENTRY32 heapInfo) {
 		CString heapID;
 		heapID.Format(_T("%d"), heapInfo.th32HeapID);
 		CString heapSize;

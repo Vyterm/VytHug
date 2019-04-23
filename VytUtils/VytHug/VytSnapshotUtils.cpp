@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "VytSnapshotUtils.hpp"
 
-void vyt::EnumProcess(std::function<void(const PROCESSENTRY32&)> processAction)
+void vyt::SnapshotUtils::EnumProcess(std::function<void(const PROCESSENTRY32&)> processAction)
 {
 	HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	PROCESSENTRY32 processInfo = { sizeof(PROCESSENTRY32) };
@@ -15,7 +15,7 @@ void vyt::EnumProcess(std::function<void(const PROCESSENTRY32&)> processAction)
 	CloseHandle(processSnapshot);
 }
 
-void vyt::EnumThread(std::function<void(const THREADENTRY32&)> threadAction)
+void vyt::SnapshotUtils::EnumThread(std::function<void(const THREADENTRY32&)> threadAction)
 {
 	auto snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
 	THREADENTRY32 threadInfo = { sizeof(THREADENTRY32) };
@@ -29,7 +29,7 @@ void vyt::EnumThread(std::function<void(const THREADENTRY32&)> threadAction)
 	CloseHandle(snapshot);
 }
 
-void vyt::EnumModule(DWORD processID, std::function<void(const MODULEENTRY32&)> moduleAction)
+void vyt::SnapshotUtils::EnumModule(DWORD processID, std::function<void(const MODULEENTRY32&)> moduleAction)
 {
 	HANDLE moduleSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, processID);
 	MODULEENTRY32 moduleInfo = { sizeof(MODULEENTRY32) };
@@ -43,7 +43,7 @@ void vyt::EnumModule(DWORD processID, std::function<void(const MODULEENTRY32&)> 
 	CloseHandle(moduleSnapshot);
 }
 
-void vyt::EnumHeap(DWORD processID, std::function<void(const HEAPENTRY32&)> heapAction)
+void vyt::SnapshotUtils::EnumHeap(DWORD processID, std::function<void(const HEAPENTRY32&)> heapAction)
 {
 	HANDLE moduleSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPHEAPLIST, processID);
 	HEAPLIST32 heapList = { sizeof(HEAPLIST32) };

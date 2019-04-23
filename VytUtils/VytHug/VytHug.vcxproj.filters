@@ -107,6 +107,9 @@
     <ClInclude Include="VytTaThreadDlg.h">
       <Filter>快照遍历</Filter>
     </ClInclude>
+    <ClInclude Include="VytComputerUtils.hpp">
+      <Filter>附属功能</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmartTab.cpp">
@@ -168,6 +171,9 @@
     </ClCompile>
     <ClCompile Include="VytTaThreadDlg.cpp">
       <Filter>快照遍历</Filter>
+    </ClCompile>
+    <ClCompile Include="VytComputerUtils.cpp">
+      <Filter>附属功能</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

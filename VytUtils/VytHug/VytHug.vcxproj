@@ -188,6 +188,7 @@
     <ClInclude Include="SmartList.hpp" />
     <ClInclude Include="SmartTab.hpp" />
     <ClInclude Include="VytAntiVirusDlg.h" />
+    <ClInclude Include="VytComputerUtils.hpp" />
     <ClInclude Include="VytPeLoaderDlg.h" />
     <ClInclude Include="VytServiceDlg.h" />
     <ClInclude Include="VytSnapshotUtils.hpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="SmartList.cpp" />
     <ClCompile Include="SmartTab.cpp" />
     <ClCompile Include="VytAntiVirusDlg.cpp" />
+    <ClCompile Include="VytComputerUtils.cpp" />
     <ClCompile Include="VytFileUtils.cpp" />
     <ClCompile Include="VytPeLoaderDlg.cpp" />
     <ClCompile Include="VytServiceDlg.cpp" />

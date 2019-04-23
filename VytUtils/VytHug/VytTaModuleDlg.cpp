@@ -25,7 +25,7 @@ VytTaModuleDlg::~VytTaModuleDlg()
 void VytTaModuleDlg::ShowModule(DWORD processID)
 {
 	m_modules.DeleteAllItems();
-	vyt::EnumModule(processID, [&](auto moduleInfo) {
+	vyt::SnapshotUtils::EnumModule(processID, [&](auto moduleInfo) {
 		CString moduleImage;
 		moduleImage.Format(_T("0x%08X"), moduleInfo.hModule);
 		CString moduleSize;

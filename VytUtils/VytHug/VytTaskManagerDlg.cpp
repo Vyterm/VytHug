@@ -33,7 +33,7 @@ void VytTaskManagerDlg::ShowProcessInfo(E_ProcessInfo info)
 void VytTaskManagerDlg::UpdateProcesses()
 {
 	m_processes.DeleteAllItems();
-	vyt::EnumProcess([&](PROCESSENTRY32 processInfo) {
+	vyt::SnapshotUtils::EnumProcess([&](PROCESSENTRY32 processInfo) {
 		CString processText;
 		processText.Format(_T("%6d"), processInfo.th32ProcessID);
 		m_processes.InsertTexts(processText, 1, CString(processInfo.szExeFile));

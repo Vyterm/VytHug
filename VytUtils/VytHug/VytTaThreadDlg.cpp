@@ -36,7 +36,7 @@ CString VytTaThreadDlg::GetThreadStatus(DWORD threadID)
 void VytTaThreadDlg::ShowThread(DWORD processID)
 {
 	m_threads.DeleteAllItems();
-	vyt::EnumThread([&](THREADENTRY32 threadInfo) {
+	vyt::SnapshotUtils::EnumThread([&](THREADENTRY32 threadInfo) {
 		if (threadInfo.th32OwnerProcessID == processID)
 		{
 			CString tid;

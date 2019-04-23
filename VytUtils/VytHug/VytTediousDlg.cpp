@@ -62,6 +62,7 @@ BEGIN_MESSAGE_MAP(VytTediousDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_TE_RESTART, &VytTediousDlg::OnBnClickedTeRestart)
 	ON_BN_CLICKED(IDC_TE_LOGOFF, &VytTediousDlg::OnBnClickedTeLogoff)
 	ON_BN_CLICKED(IDC_TE_DORMANT, &VytTediousDlg::OnBnClickedTeDormant)
+	ON_BN_CLICKED(IDC_TE_SLEEP, &VytTediousDlg::OnBnClickedTeSleep)
 	ON_BN_CLICKED(IDC_TE_LOCK, &VytTediousDlg::OnBnClickedTeLock)
 	ON_BN_CLICKED(IDC_TE_POWERRAISING, &VytTediousDlg::OnBnClickedTePowerraising)
 END_MESSAGE_MAP()
@@ -110,19 +111,25 @@ void VytTediousDlg::OnBnClickedTePoweroff()
 
 void VytTediousDlg::OnBnClickedTeRestart()
 {
-	ComputerUtils::Restart();
+	ComputerUtils::Reboot();
 }
 
 
 void VytTediousDlg::OnBnClickedTeLogoff()
 {
-	ComputerUtils::Logout();
+	ComputerUtils::Logoff();
 }
 
 
 void VytTediousDlg::OnBnClickedTeDormant()
 {
 	ComputerUtils::Dormancy();
+}
+
+
+void VytTediousDlg::OnBnClickedTeSleep()
+{
+	ComputerUtils::Sleep();
 }
 
 

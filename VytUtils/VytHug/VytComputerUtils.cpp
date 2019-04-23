@@ -2,6 +2,9 @@
 #include "VytComputerUtils.hpp"
 #include "VytSnapshotUtils.hpp"
 #include <Psapi.h>
+#include <powrprof.h>
+#pragma comment(lib, "PowrProf.lib")
+
 using namespace vyt;
 
 inline double FileTimeToDouble(const FILETIME &fileTime)
@@ -121,20 +124,30 @@ bool vyt::ComputerUtils::RunasAdmin()
 
 void vyt::ComputerUtils::Poweroff()
 {
+	ExitWindowsEx(EWX_POWEROFF | EWX_FORCE, NULL);
 }
 
-void vyt::ComputerUtils::Restart()
+void vyt::ComputerUtils::Reboot()
 {
+	ExitWindowsEx(EWX_REBOOT | EWX_FORCE, NULL);
 }
 
-void vyt::ComputerUtils::Logout()
+void vyt::ComputerUtils::Logoff()
 {
+	ExitWindowsEx(EWX_LOGOFF | EWX_FORCE, NULL);
 }
 
 void vyt::ComputerUtils::Dormancy()
 {
+	SetSuspendState(TRUE, FALSE, FALSE);
+}
+
+void vyt::ComputerUtils::Sleep()
+{
+	SetSuspendState(FALSE, FALSE, FALSE);
 }
 
 void vyt::ComputerUtils::LockScreen()
 {
+	LockWorkStation();
 }

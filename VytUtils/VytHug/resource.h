@@ -143,6 +143,7 @@
 #define IDC_BUTTON6                     1006
 #define IDC_CL_VIEWPATH                 1006
 #define IDC_CL_VIEWPATHBUTTON           1006
+#define IDC_TE_SLEEP                    1006
 #define IDC_CL_PATHEDIT                 1007
 #define IDC_CL_MD5                      1008
 #define IDC_CL_SIZETEXT                 1009

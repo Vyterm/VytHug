@@ -13,9 +13,10 @@ namespace vyt
 		static bool CheckAdmin();
 		static bool RunasAdmin();
 		static void Poweroff();
-		static void Restart();
-		static void Logout();
+		static void Reboot();
+		static void Logoff();
 		static void Dormancy();
+		static void Sleep();
 		static void LockScreen();
 	};
 }

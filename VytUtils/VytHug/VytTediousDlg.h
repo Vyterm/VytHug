@@ -35,6 +35,7 @@ public:
 	afx_msg void OnBnClickedTeRestart();
 	afx_msg void OnBnClickedTeLogoff();
 	afx_msg void OnBnClickedTeDormant();
+	afx_msg void OnBnClickedTeSleep();
 	afx_msg void OnBnClickedTeLock();
 	afx_msg void OnBnClickedTePowerraising();
 };

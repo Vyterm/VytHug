@@ -145,6 +145,7 @@
 #define IDS_RVA                         215
 #define IDS_SIZE                        216
 #define IDS_ORDINAL                     217
+#define IDS_PED_INT                     218
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306
@@ -246,10 +247,13 @@
 #define IDC_PE_MAJORSUBSYS              1068
 #define IDC_PE_FILESUBSYS               1069
 #define IDC_PEDE_LIST                   1071
-#define IDC_PEDE_NAMEFUNC               1072
 #define IDC_PEDE_NUMFUNC                1072
 #define IDC_PEDE_NUMNAME                1073
+#define IDC_CHECK1                      1073
+#define IDC_PEDI_USEFT                  1073
+#define IDC_PEDI_MODULELIST             1074
 #define IDC_PE_IMAGEBASE                1075
+#define IDC_PEDI_FUNCLIST               1075
 #define IDC_PE_IMAGESIZE                1076
 #define IDC_PE_DLLCHAR                  1077
 #define IDC_PE_FILEALIGN                1080
@@ -290,7 +294,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1073
+#define _APS_NEXT_CONTROL_VALUE         1076
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

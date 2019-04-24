@@ -52,7 +52,7 @@ namespace vyt
 		const std::deque<PIMAGE_SECTION_HEADER>& Sections() const;
 		bool ForeachExportTable(std::function<void(LPCSTR)> nameAction, std::function<void(FunctionField)> funcAction);
 		bool ForeachImportTable(std::function<void(LPCSTR, PIMAGE_IMPORT_DESCRIPTOR)> importAction);
-		void ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction);
+		void ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction, bool useIat = false);
 		bool ForeachResourceTable(std::function<void(ResourceField)> resourceAction, std::function<void(PIMAGE_RESOURCE_DATA_ENTRY)> dataAction);
 		bool ForeachRelocationTable();
 		bool ForeachTlsTable();

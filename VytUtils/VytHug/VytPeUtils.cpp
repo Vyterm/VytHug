@@ -162,11 +162,9 @@ bool vyt::PeUtils::ForeachImportTable(std::function<void(LPCSTR, PIMAGE_IMPORT_D
 	return true;
 }
 
-void vyt::PeUtils::ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction)
+void vyt::PeUtils::ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction, bool useIat/* = false*/)
 {
-	//auto int = RvaToPointer<PIMAGE_THUNK_DATA>(pImport->OriginalFirstThunk);
-	// 输入名称表是输入地址表的备份，有时候可能不存在输入名称表，所以建议用输入地址表解析
-	auto iat = RvaToPointer<PIMAGE_THUNK_DATA>(descriptor->FirstThunk);
+	auto iat = RvaToPointer<PIMAGE_THUNK_DATA>(useIat ? descriptor->FirstThunk : descriptor->OriginalFirstThunk);
 	while (NULL != iat->u1.AddressOfData)
 	{
 		if (IMAGE_SNAP_BY_ORDINAL(iat->u1.Ordinal))

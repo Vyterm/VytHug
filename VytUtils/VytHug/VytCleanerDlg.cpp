@@ -23,15 +23,15 @@ VytCleanerDlg::~VytCleanerDlg()
 {
 }
 
-void VytCleanerDlg::RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter/* = nullptr*/)
+void VytCleanerDlg::RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter/* = nullptr*/, bool isDeeply/* = false*/)
 {
 	m_filelist.DeleteAllItems();
 	FileUtils::EnumFiles(m_path, [&](const CString &path, WIN32_FIND_DATA &filedata) {
 		if (nullptr != fileFilter && !fileFilter(path, filedata)) return;
 		CString filename, fileattr, createtime, visittime, modifytime, filesize, filemd5;
 		FileUtils::QueryFileAttributes(path, filedata, filename, fileattr, createtime, visittime, modifytime, filesize, filemd5);
-		m_filelist.InsertTexts(filedata.cFileName, 6, fileattr, createtime, visittime, modifytime, filesize, filemd5);
-	});
+		m_filelist.InsertTexts(filedata.cFileName, 7, fileattr, createtime, visittime, modifytime, filesize, filemd5, path + filedata.cFileName);
+	}, isDeeply);
 }
 
 void VytCleanerDlg::DoDataExchange(CDataExchange* pDX)
@@ -56,13 +56,14 @@ BOOL VytCleanerDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	m_filelist.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES);
-	m_filelist.InsertColumn(vyt::Str(IDS_FILENAME), 100);
+	m_filelist.InsertColumn(vyt::Str(IDS_FILENAME), 90);
 	m_filelist.InsertColumn(vyt::Str(IDS_FILEATTRIBUTE), 90);
 	m_filelist.InsertColumn(vyt::Str(IDS_CREATETIME), 130);
 	m_filelist.InsertColumn(vyt::Str(IDS_LASTVISITTIME), 130);
 	m_filelist.InsertColumn(vyt::Str(IDS_LASTMODIFYTIME), 130);
 	m_filelist.InsertColumn(vyt::Str(IDS_FILESIZE), 70);
 	m_filelist.InsertColumn(vyt::Str(IDS_MD5), 200);
+	m_filelist.InsertColumn(vyt::Str(IDS_PATHABSOLUTE), 500);
 	SetDlgItemText(IDC_CL_HELPTEXT, vyt::Str(IDS_CL_HELPTEXT));
 	SetDlgItemText(IDC_CL_SCANSYS, vyt::Str(IDS_CL_SCANSYS));
 	SetDlgItemText(IDC_CL_SCANEXP, vyt::Str(IDS_CL_SCANEXP));
@@ -101,7 +102,9 @@ void VytCleanerDlg::OnBnClickedClScanexp()
 
 void VytCleanerDlg::OnBnClickedClDroptrash()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	for (int i = 0; i < m_filelist.GetItemCount(); ++i)
+		DeleteFile(m_filelist.GetItemText(i, 7));
+	m_filelist.DeleteAllItems();
 }
 
 
@@ -116,7 +119,7 @@ void VytCleanerDlg::OnDropFiles(HDROP hDropInfo)
 	RefreshFiles([&](const CString &path, WIN32_FIND_DATA &filedata) {
 		CString extension = PathFindExtension(filedata.cFileName);
 		return _T("") != extension && -1 != m_trashSuffix.Find(extension, 0);
-	});
+	}, true);
 
 	CDialogEx::OnDropFiles(hDropInfo);
 }

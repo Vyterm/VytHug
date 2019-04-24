@@ -9,7 +9,7 @@ namespace vyt
 	class FileUtils
 	{
 	public:
-		static void EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction);
+		static void EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction, bool isDeeply = false);
 		inline static bool IsDirectory(const WIN32_FIND_DATA &filedata);
 		static CString FileTimeToTimeString(const FILETIME &time);
 		static CString FileSizeToString(QWORD nFileSizeHigh, QWORD nFileSizeLow);

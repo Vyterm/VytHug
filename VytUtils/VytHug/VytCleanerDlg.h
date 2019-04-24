@@ -17,7 +17,7 @@ public:
 #endif
 
 private:
-	void RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter = nullptr);
+	void RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter = nullptr, bool isDeeply = false);
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

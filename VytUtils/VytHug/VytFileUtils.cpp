@@ -7,7 +7,7 @@ using namespace vyt;
 
 namespace vyt
 {
-	void FileUtils::EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction)
+	void FileUtils::EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction, bool isDeeply/* = false*/)
 	{
 		// 1. 使用通配符 *，构建子目录和文件夹路径的字符串
 		if (path.GetLength() == 0 || (path[path.GetLength() - 1] != _T('\\') && path[path.GetLength() - 1] != _T('/')))
@@ -23,6 +23,8 @@ namespace vyt
 			// 3.1. 判断是否是本级目录或上级目录的名称，是的话则结束本次循环
 			if (!_tcscmp(filedata.cFileName, _T(".")) || !_tcscmp(filedata.cFileName, _T(".."))) continue;
 			fileAction(path, filedata);
+			if (isDeeply && IsDirectory(filedata))
+				EnumFiles(path + filedata.cFileName, fileAction, isDeeply);
 		} while (FindNextFile(file, &filedata));
 	}
 

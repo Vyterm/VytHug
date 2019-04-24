@@ -249,12 +249,13 @@
 #define IDC_PEDE_LIST                   1071
 #define IDC_PEDE_NUMFUNC                1072
 #define IDC_PEDE_NUMNAME                1073
-#define IDC_CHECK1                      1073
 #define IDC_PEDI_USEFT                  1073
 #define IDC_PEDI_MODULELIST             1074
 #define IDC_PE_IMAGEBASE                1075
 #define IDC_PEDI_FUNCLIST               1075
 #define IDC_PE_IMAGESIZE                1076
+#define IDC_TREE1                       1076
+#define IDC_PEDR_RESTREE                1076
 #define IDC_PE_DLLCHAR                  1077
 #define IDC_PE_FILEALIGN                1080
 #define IDC_PE_VAEDIT                   1081
@@ -294,7 +295,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1076
+#define _APS_NEXT_CONTROL_VALUE         1077
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

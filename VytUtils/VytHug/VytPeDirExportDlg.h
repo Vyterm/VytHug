@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "VytPeDirectoryDlg.h"
+#include "SmartList.hpp"
 // VytPeDirExportDlg 对话框
 
 class VytPeDirExportDlg : public CDialogEx
@@ -25,4 +26,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL OnInitDialog();
+	CString m_namestr;
+	CString m_funcCount;
+	CString m_nameCount;
+	vyt::SmartList m_funclist;
 };

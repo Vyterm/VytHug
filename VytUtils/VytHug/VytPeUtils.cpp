@@ -145,7 +145,8 @@ bool vyt::PeUtils::ForeachExportTable(std::function<void(LPCSTR)> nameAction, st
 			if (i == pFuncOrdins[in]/* + pExport->Base*/)
 				funcname = RvaToPointer<LPCSTR>(pFuncNames[in]);
 		}
-		funcAction({ WORD(i),funcname,pFunctions[i] });
+		// 使用序号调用减去基数为函数表中的下标
+		funcAction({ WORD(i + pExport->Base),funcname,pFunctions[i] });
 	}
 	return true;
 }

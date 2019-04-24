@@ -35,4 +35,10 @@
 #endif
 #include "VytSmarters.hpp"
 
+#define DefConvertA2W(name, lpChar) WCHAR name[MAX_PATH];\
+MultiByteToWideChar(CP_ACP, 0, lpChar, -1, name, MAX_PATH);
+
+#define DefConvertW2A(name, lpWchar) CHAR name[MAX_PATH];\
+WideCharToMultiByte(CP_ACP, 0, lpWchar, -1, name, MAX_PATH, nullptr, FALSE);
+
 #endif

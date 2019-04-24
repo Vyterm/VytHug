@@ -1,6 +1,7 @@
 ﻿#pragma once
 
-
+#include "VytPeDirectoryDlg.h"
+#include "SmartList.hpp"
 // VytPeDirCommonDlg 对话框
 
 class VytPeDirCommonDlg : public CDialogEx
@@ -16,11 +17,14 @@ public:
 	enum { IDD = IDD_PED_COMMON };
 #endif
 
+private:
+	VytPeDirectoryDlg *m_dirDlg;
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL OnInitDialog();
-	CListCtrl m_directorys;
+	vyt::SmartList m_directorys;
 };

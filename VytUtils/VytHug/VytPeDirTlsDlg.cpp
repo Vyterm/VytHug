@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(VytPeDirTlsDlg, CDialogEx)
 VytPeDirTlsDlg::VytPeDirTlsDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_PED_TLS, pParent)
 {
-
+	m_dirDlg = dynamic_cast<VytPeDirectoryDlg*>(pParent->GetParent());
+	ASSERT(nullptr != m_dirDlg);
 }
 
 VytPeDirTlsDlg::~VytPeDirTlsDlg()

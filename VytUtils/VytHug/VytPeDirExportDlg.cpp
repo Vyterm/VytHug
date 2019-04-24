@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(VytPeDirExportDlg, CDialogEx)
 VytPeDirExportDlg::VytPeDirExportDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_PED_EXPORT, pParent)
 {
-
+	m_dirDlg = dynamic_cast<VytPeDirectoryDlg*>(pParent->GetParent());
+	ASSERT(nullptr != m_dirDlg);
 }
 
 VytPeDirExportDlg::~VytPeDirExportDlg()

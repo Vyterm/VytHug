@@ -19,7 +19,7 @@ namespace vyt
 		template <typename TDlg>
 		void SetDlg(UINT idTemplate, CString text)
 		{
-			CDialogEx *pDialog = new TDlg;
+			CDialogEx *pDialog = new TDlg(this);
 			pDialog->Create(idTemplate, this);
 			InsertItem(int(m_pDlgs.size()), text);
 			m_pDlgs.push_back(pDialog);

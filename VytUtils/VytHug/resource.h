@@ -133,6 +133,17 @@
 #define IDS_VIRTUALADDRESS              203
 #define IDS_VIRTUALSIZE                 204
 #define IDS_FILEOFFSET                  205
+#define IDS_PED_EXCEPTION               206
+#define IDS_PED_SECURITY                207
+#define IDS_PED_DEBUG                   208
+#define IDS_PED_ARCHITECTURE            209
+#define IDS_PED_GLOBALPTR               210
+#define IDS_PED_LOADCONFIG              211
+#define IDS_PED_BOUNDIMPORT             212
+#define IDS_PED_IAT                     213
+#define IDS_PED_COM                     214
+#define IDS_RVA                         215
+#define IDS_SIZE                        216
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306

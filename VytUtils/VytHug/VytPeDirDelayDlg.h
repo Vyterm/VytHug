@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "VytPeDirectoryDlg.h"
 // VytPeDirDelayDlg 对话框
 
 class VytPeDirDelayDlg : public CDialogEx
@@ -15,6 +15,9 @@ public:
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_PED_DELAY };
 #endif
+
+private:
+	VytPeDirectoryDlg *m_dirDlg;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

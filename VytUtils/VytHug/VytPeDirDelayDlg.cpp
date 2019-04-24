@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(VytPeDirDelayDlg, CDialogEx)
 VytPeDirDelayDlg::VytPeDirDelayDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_PED_DELAY, pParent)
 {
-
+	m_dirDlg = dynamic_cast<VytPeDirectoryDlg*>(pParent->GetParent());
+	ASSERT(nullptr != m_dirDlg);
 }
 
 VytPeDirDelayDlg::~VytPeDirDelayDlg()

@@ -19,6 +19,8 @@ public:
 
 private:
 	vyt::PeUtils &m_peInfo;
+public:
+	const vyt::PeUtils& PeInfo() const { return m_peInfo; }
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(VytPeDirRelocationDlg, CDialogEx)
 VytPeDirRelocationDlg::VytPeDirRelocationDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_PED_RELOCATION, pParent)
 {
-
+	m_dirDlg = dynamic_cast<VytPeDirectoryDlg*>(pParent->GetParent());
+	ASSERT(nullptr != m_dirDlg);
 }
 
 VytPeDirRelocationDlg::~VytPeDirRelocationDlg()

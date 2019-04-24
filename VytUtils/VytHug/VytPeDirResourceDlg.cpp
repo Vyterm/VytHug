@@ -14,7 +14,8 @@ IMPLEMENT_DYNAMIC(VytPeDirResourceDlg, CDialogEx)
 VytPeDirResourceDlg::VytPeDirResourceDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_PED_RESOURCE, pParent)
 {
-
+	m_dirDlg = dynamic_cast<VytPeDirectoryDlg*>(pParent->GetParent());
+	ASSERT(nullptr != m_dirDlg);
 }
 
 VytPeDirResourceDlg::~VytPeDirResourceDlg()

@@ -17,8 +17,8 @@ using namespace vyt;
 
 IMPLEMENT_DYNAMIC(VytPeDirectoryDlg, CDialogEx)
 
-VytPeDirectoryDlg::VytPeDirectoryDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_PE_DIRECTORY, pParent)
+VytPeDirectoryDlg::VytPeDirectoryDlg(vyt::PeUtils &peInfo, CWnd* pParent /*=nullptr*/)
+	: CDialogEx(IDD_PE_DIRECTORY, pParent), m_peInfo(peInfo)
 {
 
 }

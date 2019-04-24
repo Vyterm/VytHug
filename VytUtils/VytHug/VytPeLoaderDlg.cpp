@@ -231,13 +231,15 @@ void VytPeLoaderDlg::OnEnChangePeFoaEdit()
 
 void VytPeLoaderDlg::OnBnClickedPeDirbtn()
 {
-	VytPeDirectoryDlg vpdd;
+	if (!m_peInfo.IsLoad()) return;
+	VytPeDirectoryDlg vpdd(m_peInfo, this);
 	vpdd.DoModal();
 }
 
 
 void VytPeLoaderDlg::OnBnClickedPeSecbtn()
 {
-	VytPeSectionDlg vpsd;
+	if (!m_peInfo.IsLoad()) return;
+	VytPeSectionDlg vpsd(m_peInfo, this);
 	vpsd.DoModal();
 }

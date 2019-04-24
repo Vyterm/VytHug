@@ -129,6 +129,10 @@
 #define IDS_PED_TLS                     200
 #define IDS_PED_DELAY                   201
 #define IDD_TASKMANAGER_DIALOG          202
+#define IDS_FLAG                        202
+#define IDS_VIRTUALADDRESS              203
+#define IDS_VIRTUALSIZE                 204
+#define IDS_FILEOFFSET                  205
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306

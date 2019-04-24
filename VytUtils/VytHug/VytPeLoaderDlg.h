@@ -18,8 +18,12 @@ public:
 
 private:
 	vyt::PeUtils m_peInfo;
+	DWORD m_rva, m_va, m_foa;
+	bool m_isValueUpdating;
 private:
 	void DisplayPeInfo();
+	void UpdateOption();
+	void UpdateValue();
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
@@ -50,4 +54,11 @@ public:
 	CEdit m_foaEdit;
 	CButton m_dirBtn;
 	CButton m_secBtn;
+	BOOL m_addressOption;
+	afx_msg void OnBnClickedPeRadiorva();
+	afx_msg void OnBnClickedPeRadiova();
+	afx_msg void OnBnClickedPeRadiofoa();
+	afx_msg void OnEnChangePeRvaedit();
+	afx_msg void OnEnChangePeVaedit();
+	afx_msg void OnEnChangePeFoaEdit();
 };

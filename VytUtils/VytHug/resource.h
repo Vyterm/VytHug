@@ -197,6 +197,9 @@
 #define IDC_PE_OPHSIZE                  1052
 #define IDC_PE_FILECHAR                 1053
 #define IDC_PE_SECBTN                   1054
+#define IDC_PE_RADIORVA                 1055
+#define IDC_PE_RADIOVA                  1056
+#define IDC_PE_RADIOFOA                 1057
 #define IDC_PE_MAGIC                    1059
 #define IDC_PE_SECALIGN                 1060
 #define IDC_PE_HEADERSIZE               1061
@@ -210,7 +213,6 @@
 #define IDC_PE_DLLCHAR                  1077
 #define IDC_PE_FILEALIGN                1080
 #define IDC_PE_VAEDIT                   1081
-#define IDC_EDIT19                      1082
 #define IDC_PE_FOA_EDIT                 1082
 #define ID_32771                        32771
 #define ID_32772                        32772
@@ -247,7 +249,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1055
+#define _APS_NEXT_CONTROL_VALUE         1058
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

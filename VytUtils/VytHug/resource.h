@@ -58,14 +58,17 @@
 #define IDS_THREADRUNNING               138
 #define IDS_THREADSUSPENDED             139
 #define IDR_SE_TRACKMENU                139
+#define IDD_PE_SECTION                  139
 #define IDS_HEAP_USED                   140
 #define IDR_SO_TRACKMENU                140
 #define IDR_TM_TRACKMENU                141
 #define IDS_HEAP_MOVEABLE               141
+#define IDD_PE_DIRECTORY                141
 #define IDS_HEAP_FREE                   142
 #define IDD_TA_HEAP                     143
 #define IDS_TERMINATEP_FAILED           143
 #define IDS_TERMINATET_FAILED           144
+#define IDD_PED_COMMON                  144
 #define IDS_SUSPEND_FAILED              145
 #define IDS_RESUME_FAILED               146
 #define IDS_CPU                         147
@@ -116,7 +119,15 @@
 #define IDS_SERVICE_SYSTEM_START        192
 #define IDS_SERVICE_SYSTEM              193
 #define IDS_SERVICE_DRIVER              194
+#define IDS_COMMON                      195
+#define IDS_PED_EXPORT                  196
+#define IDS_PED_IMPORT                  197
+#define IDS_PED_RESOURCE                198
+#define IDS_PED_RELOCATINO              199
+#define IDS_PED_RELOCATION              199
 #define IDD_ABOUTBOX                    200
+#define IDS_PED_TLS                     200
+#define IDS_PED_DELAY                   201
 #define IDD_TASKMANAGER_DIALOG          202
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
@@ -125,9 +136,16 @@
 #define IDD_TASKMANAGER                 308
 #define IDD_PELOADER                    309
 #define IDD_ANTIVIRUS                   310
+#define IDD_PED_EXPORT                  311
+#define IDD_PED_IMPORT                  312
+#define IDD_PED_RESOURCE                313
+#define IDD_PED_RELOCATION              314
+#define IDD_PED_TLS                     315
+#define IDD_PED_DELAY                   316
 #define IDC_TAB1                        1000
 #define IDC_HOME_TAB                    1000
 #define IDC_TAM_TAB                     1000
+#define IDC_PED_TAB                     1000
 #define IDC_BUTTON1                     1001
 #define IDC_CL_CLEANBUTTON              1001
 #define IDC_BUTTON2                     1002
@@ -200,7 +218,9 @@
 #define IDC_PE_RADIORVA                 1055
 #define IDC_PE_RADIOVA                  1056
 #define IDC_PE_RADIOFOA                 1057
+#define IDC_PES_LIST                    1058
 #define IDC_PE_MAGIC                    1059
+#define IDC_PEDC_LIST                   1059
 #define IDC_PE_SECALIGN                 1060
 #define IDC_PE_HEADERSIZE               1061
 #define IDC_PE_DIRNUM                   1062
@@ -247,9 +267,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        139
+#define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1058
+#define _APS_NEXT_CONTROL_VALUE         1060
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

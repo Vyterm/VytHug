@@ -61,4 +61,6 @@ public:
 	afx_msg void OnEnChangePeRvaedit();
 	afx_msg void OnEnChangePeVaedit();
 	afx_msg void OnEnChangePeFoaEdit();
+	afx_msg void OnBnClickedPeDirbtn();
+	afx_msg void OnBnClickedPeSecbtn();
 };

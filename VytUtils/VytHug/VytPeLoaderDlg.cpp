@@ -5,7 +5,8 @@
 #include "VytHug.h"
 #include "VytPeLoaderDlg.h"
 #include "afxdialogex.h"
-
+#include "VytPeSectionDlg.h"
+#include "VytPeDirectoryDlg.h"
 
 // VytPeLoaderDlg 对话框
 
@@ -156,6 +157,8 @@ BEGIN_MESSAGE_MAP(VytPeLoaderDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_PE_RVAEDIT, &VytPeLoaderDlg::OnEnChangePeRvaedit)
 	ON_EN_CHANGE(IDC_PE_VAEDIT, &VytPeLoaderDlg::OnEnChangePeVaedit)
 	ON_EN_CHANGE(IDC_PE_FOA_EDIT, &VytPeLoaderDlg::OnEnChangePeFoaEdit)
+	ON_BN_CLICKED(IDC_PE_DIRBTN, &VytPeLoaderDlg::OnBnClickedPeDirbtn)
+	ON_BN_CLICKED(IDC_PE_SECBTN, &VytPeLoaderDlg::OnBnClickedPeSecbtn)
 END_MESSAGE_MAP()
 
 
@@ -223,4 +226,18 @@ void VytPeLoaderDlg::OnEnChangePeVaedit()
 void VytPeLoaderDlg::OnEnChangePeFoaEdit()
 {
 	UpdateValue();
+}
+
+
+void VytPeLoaderDlg::OnBnClickedPeDirbtn()
+{
+	VytPeDirectoryDlg vpdd;
+	vpdd.DoModal();
+}
+
+
+void VytPeLoaderDlg::OnBnClickedPeSecbtn()
+{
+	VytPeSectionDlg vpsd;
+	vpsd.DoModal();
 }

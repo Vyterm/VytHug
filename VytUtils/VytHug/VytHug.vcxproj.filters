@@ -36,6 +36,9 @@
     <Filter Include="垃圾清理">
       <UniqueIdentifier>{2d5ac351-f8f4-4b8c-9869-fbee35f9403c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PE解析\目录表">
+      <UniqueIdentifier>{7ffae514-2ee0-4b56-a4d5-4c6cd3c68d72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VytHug.h">
@@ -116,6 +119,33 @@
     <ClInclude Include="VytPeUtils.hpp">
       <Filter>PE解析</Filter>
     </ClInclude>
+    <ClInclude Include="VytPeSectionDlg.h">
+      <Filter>PE解析</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirectoryDlg.h">
+      <Filter>PE解析</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirDelayDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirExportDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirImportDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirRelocationDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirResourceDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirTlsDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
+    <ClInclude Include="VytPeDirCommonDlg.h">
+      <Filter>PE解析\目录表</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmartTab.cpp">
@@ -186,6 +216,33 @@
     </ClCompile>
     <ClCompile Include="VytPeUtils.cpp">
       <Filter>PE解析</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeSectionDlg.cpp">
+      <Filter>PE解析</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirectoryDlg.cpp">
+      <Filter>PE解析</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirDelayDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirExportDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirImportDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirRelocationDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirResourceDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirTlsDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeDirCommonDlg.cpp">
+      <Filter>PE解析\目录表</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

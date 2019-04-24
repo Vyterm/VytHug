@@ -8,9 +8,6 @@
     <Filter Include="快照遍历">
       <UniqueIdentifier>{d0c02716-ff1a-4b49-8f02-1ae40b75a7e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="文件信息">
-      <UniqueIdentifier>{2d5ac351-f8f4-4b8c-9869-fbee35f9403c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="自定义控件">
       <UniqueIdentifier>{abb73e11-aa2d-4e0b-8d35-b51797a8d953}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="垃圾清理">
+      <UniqueIdentifier>{2d5ac351-f8f4-4b8c-9869-fbee35f9403c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VytHug.h">
@@ -57,7 +57,7 @@
       <Filter>自定义控件</Filter>
     </ClInclude>
     <ClInclude Include="VytFileUtils.hpp">
-      <Filter>文件信息</Filter>
+      <Filter>垃圾清理</Filter>
     </ClInclude>
     <ClInclude Include="VytSnapshotUtils.hpp">
       <Filter>快照遍历</Filter>
@@ -69,7 +69,7 @@
       <Filter>PE解析</Filter>
     </ClInclude>
     <ClInclude Include="VytCleanerDlg.h">
-      <Filter>文件信息</Filter>
+      <Filter>垃圾清理</Filter>
     </ClInclude>
     <ClInclude Include="VytTaskManagerDlg.h">
       <Filter>快照遍历</Filter>
@@ -113,6 +113,9 @@
     <ClInclude Include="VytRegeditUtils.hpp">
       <Filter>软件管理</Filter>
     </ClInclude>
+    <ClInclude Include="VytPeUtils.hpp">
+      <Filter>PE解析</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmartTab.cpp">
@@ -125,7 +128,7 @@
       <Filter>快照遍历</Filter>
     </ClCompile>
     <ClCompile Include="VytFileUtils.cpp">
-      <Filter>文件信息</Filter>
+      <Filter>垃圾清理</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
       <Filter>第三方代码</Filter>
@@ -134,7 +137,7 @@
       <Filter>PE解析</Filter>
     </ClCompile>
     <ClCompile Include="VytCleanerDlg.cpp">
-      <Filter>文件信息</Filter>
+      <Filter>垃圾清理</Filter>
     </ClCompile>
     <ClCompile Include="VytTaskManagerDlg.cpp">
       <Filter>快照遍历</Filter>
@@ -180,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="VytRegeditUtils.cpp">
       <Filter>软件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="VytPeUtils.cpp">
+      <Filter>PE解析</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

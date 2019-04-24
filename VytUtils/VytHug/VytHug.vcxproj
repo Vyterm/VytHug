@@ -194,6 +194,7 @@
     <ClInclude Include="VytAntiVirusDlg.h" />
     <ClInclude Include="VytComputerUtils.hpp" />
     <ClInclude Include="VytPeLoaderDlg.h" />
+    <ClInclude Include="VytPeUtils.hpp" />
     <ClInclude Include="VytRegeditUtils.hpp" />
     <ClInclude Include="VytServiceDlg.h" />
     <ClInclude Include="VytSnapshotUtils.hpp" />
@@ -221,6 +222,7 @@
     <ClCompile Include="VytComputerUtils.cpp" />
     <ClCompile Include="VytFileUtils.cpp" />
     <ClCompile Include="VytPeLoaderDlg.cpp" />
+    <ClCompile Include="VytPeUtils.cpp" />
     <ClCompile Include="VytRegeditUtils.cpp" />
     <ClCompile Include="VytServiceDlg.cpp" />
     <ClCompile Include="VytSnapshotUtils.cpp" />

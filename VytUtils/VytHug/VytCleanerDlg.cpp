@@ -70,6 +70,10 @@ BOOL VytCleanerDlg::OnInitDialog()
 	SetDlgItemText(IDC_CL_PATHHINT, vyt::Str(IDS_PATHHINT));
 	SetDlgItemText(IDC_CL_VIEWPATHBUTTON, vyt::Str(IDS_CL_VIEWPATH));
 	SetDlgItemText(IDC_CL_INFOLIST, _T(""));
+	// 使管理员权限运行时也可以接收文件拖拽
+	// 参考自: https://blog.csdn.net/learner198461/article/details/42223835
+	ChangeWindowMessageFilter(WM_DROPFILES, MSGFLT_ADD);
+	ChangeWindowMessageFilter(0x49, MSGFLT_ADD);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE

@@ -26,6 +26,14 @@ namespace vyt
 		ResourceField(LPCWSTR name, E_Layer layer) : NameIsString(true), Layer(layer) { u.Name = name; }
 	};
 
+	struct RelocationField
+	{
+		DWORD Rva;
+		DWORD Foa;
+		WORD Type;
+		DWORD Data;
+	};
+
 	class PeUtils
 	{
 		LPVOID m_pBuffer;
@@ -54,7 +62,7 @@ namespace vyt
 		bool ForeachImportTable(std::function<void(LPCSTR, PIMAGE_IMPORT_DESCRIPTOR)> importAction);
 		void ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction, bool useIat = false);
 		bool ForeachResourceTable(std::function<void(ResourceField)> resourceAction, std::function<void(PIMAGE_RESOURCE_DATA_ENTRY)> dataAction);
-		bool ForeachRelocationTable();
+		bool ForeachRelocationTable(std::function<void(RelocationField)> relocationAction);
 		bool ForeachTlsTable();
 		bool ForeachDelayTable();
 	};

@@ -170,6 +170,7 @@
 #define IDC_BUTTON1                     1001
 #define IDC_CL_CLEANBUTTON              1001
 #define IDC_AN_DELETEALL                1001
+#define IDC_PEDR_BEGINPRINT             1001
 #define IDC_BUTTON2                     1002
 #define IDC_CL_FILETREE                 1002
 #define IDC_BUTTON3                     1003
@@ -269,9 +270,17 @@
 #define IDC_PEDR_RESTREE                1076
 #define IDC_PE_DLLCHAR                  1077
 #define IDC_AN_SCANSTATE                1077
+#define IDC_PEDR_LOGEDIT                1078
 #define IDC_PE_FILEALIGN                1080
+#define IDC_PEDT_EDIT1                  1080
 #define IDC_PE_VAEDIT                   1081
 #define IDC_PE_FOA_EDIT                 1082
+#define IDC_PEDT_EDIT2                  1085
+#define IDC_PEDT_EDIT3                  1086
+#define IDC_PEDT_EDIT4                  1087
+#define IDC_PEDT_EDIT5                  1088
+#define IDC_EDIT6                       1089
+#define IDC_PEDT_EDIT6                  1089
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -307,7 +316,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1078
+#define _APS_NEXT_CONTROL_VALUE         1081
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

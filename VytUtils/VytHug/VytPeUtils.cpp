@@ -228,9 +228,34 @@ bool vyt::PeUtils::ForeachResourceTable(std::function<void(ResourceField)> resou
 	return true;
 }
 
-bool vyt::PeUtils::ForeachRelocationTable()
+bool vyt::PeUtils::ForeachRelocationTable(std::function<void(RelocationField)> relocationAction)
 {
-	return false;
+	auto relocRva = m_directorys[IMAGE_DIRECTORY_ENTRY_BASERELOC]->VirtualAddress;
+	if (NULL == relocRva)
+		return false;
+	auto pRelocation = RvaToPointer<PIMAGE_BASE_RELOCATION>(relocRva);
+	struct TypeOffset
+	{
+		WORD Offset : 12;
+		WORD Type : 4;
+	};
+	while (NULL != pRelocation->SizeOfBlock)
+	{
+		TypeOffset *pOffset = (TypeOffset*)(pRelocation + 1);
+		DWORD count = (pRelocation->SizeOfBlock - sizeof(IMAGE_BASE_RELOCATION)) / sizeof(TypeOffset);
+		for (DWORD i = 0; i < count; ++i)
+		{
+			if (pOffset[i].Type == 3)
+			{
+				DWORD dataRva = pRelocation->VirtualAddress + pOffset[i].Offset;
+				DWORD dataFoa = RvaToFoa(dataRva);
+				PDWORD pData = RvaToPointer<PDWORD>(dataRva);
+				relocationAction({ dataRva, dataFoa, pOffset[i].Type, *pData });
+			}
+		}
+		pRelocation = (PIMAGE_BASE_RELOCATION)((DWORD)pRelocation + pRelocation->SizeOfBlock);
+	}
+	return true;
 }
 
 bool vyt::PeUtils::ForeachTlsTable()

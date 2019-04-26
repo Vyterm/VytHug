@@ -284,7 +284,6 @@
 #define IDC_PEDT_EDIT3                  1086
 #define IDC_PEDD_EDIT6                  1086
 #define IDC_PEDT_EDIT4                  1087
-#define IDC_EDIT7                       1087
 #define IDC_PEDD_EDIT7                  1087
 #define IDC_PEDT_EDIT5                  1088
 #define IDC_PEDT_EDIT6                  1089
@@ -316,13 +315,14 @@
 #define ID_SO_REFRESH                   32796
 #define ID_SO_EXPLORER                  32797
 #define ID_TAP_HEAP                     32798
+#define ID_32799                        32799
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
-#define _APS_NEXT_COMMAND_VALUE         32799
+#define _APS_NEXT_COMMAND_VALUE         32800
 #define _APS_NEXT_CONTROL_VALUE         1082
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

@@ -17,6 +17,8 @@ public:
 #endif
 
 private:
+	CString m_selectService;
+private:
 	void UpdateServices();
 
 protected:
@@ -26,4 +28,8 @@ protected:
 public:
 	vyt::SmartList m_services;
 	virtual BOOL OnInitDialog();
+	afx_msg void TrackServiceCommand(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSeRun();
+	afx_msg void OnSeStop();
+	afx_msg void OnSeRefresh();
 };

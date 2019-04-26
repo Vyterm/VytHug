@@ -27,6 +27,25 @@ void vyt::RegeditUtils::EnumServices(std::function<void(const ENUM_SERVICE_STATU
 	CloseServiceHandle(scm);
 }
 
+void vyt::RegeditUtils::ServiceStart(CString serviceName)
+{
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	SC_HANDLE service = OpenService(scm, serviceName, SERVICE_START);
+	StartService(service, 0, nullptr);
+	CloseServiceHandle(scm);
+	CloseServiceHandle(service);
+}
+
+void vyt::RegeditUtils::ServicePause(CString serviceName)
+{
+	SC_HANDLE scm = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	SC_HANDLE service = OpenService(scm, serviceName, SERVICE_STOP);
+	SERVICE_STATUS status;
+	ControlService(service, SERVICE_CONTROL_STOP, &status);
+	CloseServiceHandle(scm);
+	CloseServiceHandle(service);
+}
+
 static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam)
 {
 	auto &action = *(std::function<void(HWND)>*)lParam;

@@ -86,7 +86,7 @@ void VytTaThreadDlg::TrackThreadCommand(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 	if (-1 == pNMItemActivate->iItem) return;
 	m_activeThreadIndex = pNMItemActivate->iItem;
-	TrackMenu(threadCommand, IDR_TA_TRACKMENU, 1);
+	TrackMenu(IDR_TA_TRACKMENU, 1);
 }
 
 #define TidOpen(name, access, error) DWORD name## ID = _ttoi(m_threads.GetItemText(m_activeThreadIndex, 0));\

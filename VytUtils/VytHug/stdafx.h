@@ -49,7 +49,7 @@ CMenu *name = MENU##name.GetSubMenu(index);
 GetCursorPos(&pos);\
 name->TrackPopupMenu(TPM_LEFTALIGN, pos.x, pos.y, this);
 
-#define TrackMenu(name, id, index) DefTrackMenu(name, id, index);\
-DefTrackMenu_Show(name);
+#define TrackMenu(id, index) DefTrackMenu(TrackMenuDEFAULTNAME, id, index);\
+DefTrackMenu_Show(TrackMenuDEFAULTNAME);
 
 #endif

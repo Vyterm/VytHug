@@ -100,6 +100,10 @@ void VytServiceDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(VytServiceDlg, CDialogEx)
+	ON_NOTIFY(NM_RCLICK, IDC_SE_LIST, &VytServiceDlg::TrackServiceCommand)
+	ON_COMMAND(ID_SE_RUN, &VytServiceDlg::OnSeRun)
+	ON_COMMAND(ID_SE_STOP, &VytServiceDlg::OnSeStop)
+	ON_COMMAND(ID_SE_REFRESH, &VytServiceDlg::OnSeRefresh)
 END_MESSAGE_MAP()
 
 
@@ -120,4 +124,34 @@ BOOL VytServiceDlg::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void VytServiceDlg::TrackServiceCommand(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	if (-1 == pNMItemActivate->iItem) return;
+	m_selectService = m_services.GetItemText(pNMItemActivate->iItem, 0);
+	TrackMenu(IDR_SE_TRACKMENU, 0);
+}
+
+
+void VytServiceDlg::OnSeRun()
+{
+	RegeditUtils::ServiceStart(m_selectService);
+	UpdateServices();
+}
+
+
+void VytServiceDlg::OnSeStop()
+{
+	RegeditUtils::ServicePause(m_selectService);
+	UpdateServices();
+}
+
+
+void VytServiceDlg::OnSeRefresh()
+{
+	UpdateServices();
 }

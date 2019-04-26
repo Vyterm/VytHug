@@ -51,7 +51,7 @@ CloseHandle(thread); } // 关闭句柄让线程结束后自动释放，避免内
 
 #define ScanRefresh() { if (!m_isScaning) return; else RefreshScan(path); }
 
-#define ConnectionCheck() { ScanRefresh(); if (!ClientPeer::Get().IsConnected()) {\
+#define ConnectionCheck() { if (!ClientPeer::Get().IsConnected()) {\
 	if (!ClientPeer::Get().Connect(_T("127.0.0.1"), short(38564))) {\
 		MessageBox(Str(IDS_NOTCONNECTED), Str(IDS_ACCESS_FAILED), MB_ICONERROR);\
 		OverRefresh();\
@@ -104,13 +104,13 @@ void VytAntiVirusDlg::LocalScanOver()
 
 void VytAntiVirusDlg::NetScan(CString path)
 {
+	ScanRefresh();
 	ConnectionCheck();
 	ClientPeer::Get().Send(_Packet(command(OpCommand::Virus), command(VirusCommand::Check), "ss", md5FileValue(path), path));
 }
 
 void VytAntiVirusDlg::NetScanDeeply(CString path)
 {
-	ConnectionCheck();
 	ScanDeeply(Net);
 }
 
@@ -147,9 +147,9 @@ void VytAntiVirusDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(VytAntiVirusDlg, CDialogEx)
-	ON_BN_CLICKED(IDC_AN_STARTSCAN, &VytAntiVirusDlg::OnBnClickedAnStartscan)
+	ON_BN_CLICKED(IDC_AN_STARTSCAN, &VytAntiVirusDlg::StartScan)
 	ON_BN_CLICKED(IDC_AN_DELETEALL, &VytAntiVirusDlg::DeleteAllViruses)
-	ON_BN_CLICKED(IDC_AN_SENDTOSERVER, &VytAntiVirusDlg::OnBnClickedAnSendtoserver)
+	ON_BN_CLICKED(IDC_AN_SENDTOSERVER, &VytAntiVirusDlg::SubmitVirus)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -174,7 +174,7 @@ BOOL VytAntiVirusDlg::OnInitDialog()
 #define SmartScan(filter) { useDir ? filter## ScanDeeply(path) : filter## Scan(path);\
 if (!useDir) filter## ScanOver(); }
 
-void VytAntiVirusDlg::OnBnClickedAnStartscan()
+void VytAntiVirusDlg::StartScan()
 {
 	if (m_isScaning) return;
 	UpdateData(TRUE);
@@ -197,9 +197,13 @@ void VytAntiVirusDlg::DeleteAllViruses()
 }
 
 
-void VytAntiVirusDlg::OnBnClickedAnSendtoserver()
+void VytAntiVirusDlg::SubmitVirus()
 {
-
+	auto path = FileUtils::SelectFilePath();
+	if (path.IsEmpty()) return;
+	ConnectionCheck();
+	auto md5 = md5FileValue(path);
+	ClientPeer::Get().Send(_Packet(command(OpCommand::Virus), command(VirusCommand::Submit), "s", md5));
 }
 
 

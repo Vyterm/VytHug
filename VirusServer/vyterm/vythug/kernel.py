@@ -37,7 +37,8 @@ class Caches(object):
         return self.viruses[virus_md5]
 
     def submit(self, virus_md5: str):
-        self.mysql.execute("insert into `md5_virus_table`(`virus_tag`) values (%s);" % virus_md5)
+        self.mysql.execute("insert into `md5_virus_table`(`virus_tag`) values ('%s');" % virus_md5)
+        self.viruses[virus_md5] = "Trojan"
 
 
 class Handler(object):

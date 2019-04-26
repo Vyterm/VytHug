@@ -46,8 +46,8 @@ public:
 	BOOL m_libraryOption;
 	BOOL m_pathOption;
 	CEdit m_scanState;
-	afx_msg void OnBnClickedAnStartscan();
+	afx_msg void StartScan();
 	afx_msg void DeleteAllViruses();
-	afx_msg void OnBnClickedAnSendtoserver();
+	afx_msg void SubmitVirus();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

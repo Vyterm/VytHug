@@ -165,10 +165,12 @@
 #define IDC_PED_TAB                     1000
 #define IDC_BUTTON1                     1001
 #define IDC_CL_CLEANBUTTON              1001
+#define IDC_AN_DELETEALL                1001
 #define IDC_BUTTON2                     1002
 #define IDC_CL_FILETREE                 1002
 #define IDC_BUTTON3                     1003
 #define IDC_CL_FILELIST                 1003
+#define IDC_AN_SENDTOSERVER             1003
 #define IDC_BUTTON4                     1004
 #define IDC_CL_CPUPROGRESS              1004
 #define IDC_TE_DORMANT                  1004
@@ -179,6 +181,7 @@
 #define IDC_CL_VIEWPATH                 1006
 #define IDC_CL_VIEWPATHBUTTON           1006
 #define IDC_TE_SLEEP                    1006
+#define IDC_AN_STARTSCAN                1006
 #define IDC_CL_PATHEDIT                 1007
 #define IDC_CL_MD5                      1008
 #define IDC_CL_SIZETEXT                 1009
@@ -203,11 +206,16 @@
 #define IDC_PROGRESS2                   1027
 #define IDC_TE_PROGRESSMEMORY           1027
 #define IDC_LIST1                       1028
+#define IDC_AN_VIRUSLIST                1028
 #define IDC_LIST2                       1030
 #define IDC_RADIO1                      1031
+#define IDC_AN_LIBOP1                   1031
 #define IDC_RADIO2                      1032
+#define IDC_AN_LIBOP2                   1032
 #define IDC_RADIO3                      1033
+#define IDC_AN_PATHOP1                  1033
 #define IDC_RADIO4                      1034
+#define IDC_AN_PATHOP2                  1034
 #define IDC_SE_LIST                     1035
 #define IDC_SO_LIST                     1036
 #define IDC_WI_LIST                     1037
@@ -254,7 +262,6 @@
 #define IDC_PE_IMAGEBASE                1075
 #define IDC_PEDI_FUNCLIST               1075
 #define IDC_PE_IMAGESIZE                1076
-#define IDC_TREE1                       1076
 #define IDC_PEDR_RESTREE                1076
 #define IDC_PE_DLLCHAR                  1077
 #define IDC_PE_FILEALIGN                1080

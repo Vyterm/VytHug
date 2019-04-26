@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include "SmartList.hpp"
 // VytAntiVirusDlg 对话框
 
 class VytAntiVirusDlg : public CDialogEx
@@ -22,4 +22,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL OnInitDialog();
+	vyt::SmartList m_viruses;
+	BOOL m_libraryOption;
+	BOOL m_pathOption;
+	afx_msg void OnBnClickedAnStartscan();
+	afx_msg void OnBnClickedAnDeleteall();
+	afx_msg void OnBnClickedAnSendtoserver();
 };

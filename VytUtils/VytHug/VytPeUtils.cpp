@@ -258,9 +258,14 @@ bool vyt::PeUtils::ForeachRelocationTable(std::function<void(RelocationField)> r
 	return true;
 }
 
-bool vyt::PeUtils::ForeachTlsTable()
+bool vyt::PeUtils::ForeachTlsTable(std::function<void(PIMAGE_TLS_DIRECTORY)> tlsAction)
 {
-	return false;
+	auto tlsRva = m_directorys[IMAGE_DIRECTORY_ENTRY_BASERELOC]->VirtualAddress;
+	if (NULL == tlsRva)
+		return false;
+	auto pTLS = RvaToPointer<PIMAGE_TLS_DIRECTORY>(tlsRva);
+	tlsAction(pTLS);
+	return true;
 }
 
 bool vyt::PeUtils::ForeachDelayTable()

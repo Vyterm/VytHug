@@ -63,7 +63,7 @@ namespace vyt
 		void ForeachImportTable(PIMAGE_IMPORT_DESCRIPTOR descriptor, std::function<void(WORD, LPCSTR)> funcAction, bool useIat = false);
 		bool ForeachResourceTable(std::function<void(ResourceField)> resourceAction, std::function<void(PIMAGE_RESOURCE_DATA_ENTRY)> dataAction);
 		bool ForeachRelocationTable(std::function<void(RelocationField)> relocationAction);
-		bool ForeachTlsTable();
+		bool ForeachTlsTable(std::function<void(PIMAGE_TLS_DIRECTORY)> tlsAction);
 		bool ForeachDelayTable();
 	};
 }

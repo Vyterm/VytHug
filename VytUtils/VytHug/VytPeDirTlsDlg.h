@@ -25,4 +25,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL OnInitDialog();
+	CString m_edit1;
+	CString m_edit2;
+	CString m_edit3;
+	CString m_edit4;
+	CString m_edit5;
+	CString m_edit6;
 };

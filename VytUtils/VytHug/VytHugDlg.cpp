@@ -19,7 +19,8 @@
 #define new DEBUG_NEW
 #endif
 
-
+constexpr int HideShowHotKey = WM_USER + 1;
+constexpr int QuickQuitHotKey = WM_USER + 2;
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialogEx
@@ -80,12 +81,15 @@ void CVytHugDlg::InitUI()
 	m_hometab.SetDlg<VytTediousDlg>(IDD_TEDIOUS, vyt::Str(IDS_TEDIOUS));
 	m_hometab.SetDlg<VytPeLoaderDlg>(IDD_PELOADER, vyt::Str(IDS_PELOADER));
 	m_hometab.SeeDlg(0);
+	RegisterHotKey(GetSafeHwnd(), HideShowHotKey, MOD_CONTROL | MOD_ALT, 'H');
+	RegisterHotKey(GetSafeHwnd(), QuickQuitHotKey, MOD_CONTROL | MOD_ALT, 'Q');
 }
 
 BEGIN_MESSAGE_MAP(CVytHugDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_HOTKEY()
 END_MESSAGE_MAP()
 
 
@@ -174,3 +178,18 @@ HCURSOR CVytHugDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CVytHugDlg::OnHotKey(UINT nHotKeyId, UINT nKey1, UINT nKey2)
+{
+	CDialogEx::OnHotKey(nHotKeyId, nKey1, nKey2);
+	if (nHotKeyId == HideShowHotKey)
+	{
+		if (IsWindowVisible())
+			ShowWindow(SW_HIDE);
+		else
+			ShowWindow(SW_SHOW);
+	}
+	else if (nHotKeyId == QuickQuitHotKey)
+		PostQuitMessage(0);
+}

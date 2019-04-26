@@ -41,4 +41,15 @@ MultiByteToWideChar(CP_ACP, 0, lpChar, -1, name, MAX_PATH);
 #define DefConvertW2A(name, lpWchar) CHAR name[MAX_PATH];\
 WideCharToMultiByte(CP_ACP, 0, lpWchar, -1, name, MAX_PATH, nullptr, FALSE);
 
+#define DefTrackMenu(name, id, index) CMenu MENU##name;\
+MENU##name.LoadMenu(id);\
+CMenu *name = MENU##name.GetSubMenu(index);
+
+#define DefTrackMenu_Show(name) POINT pos;\
+GetCursorPos(&pos);\
+name->TrackPopupMenu(TPM_LEFTALIGN, pos.x, pos.y, this);
+
+#define TrackMenu(name, id, index) DefTrackMenu(name, id, index);\
+DefTrackMenu_Show(name);
+
 #endif

@@ -91,9 +91,7 @@ void VytTaskManagerDlg::OnTrackProcess(NMHDR *pNMHDR, LRESULT *pResult)
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 
 	m_activeProcessIndex = pNMItemActivate->iItem;
-	CMenu menu;
-	menu.LoadMenuW(IDR_TA_TRACKMENU);
-	CMenu *pSubMenu = menu.GetSubMenu(0);
+	DefTrackMenu(pSubMenu, IDR_TA_TRACKMENU, 0);
 	if (-1 == m_activeProcessIndex)
 	{
 		pSubMenu->DeleteMenu(ID_TAP_THREAD, MF_BYCOMMAND);
@@ -101,11 +99,7 @@ void VytTaskManagerDlg::OnTrackProcess(NMHDR *pNMHDR, LRESULT *pResult)
 		pSubMenu->DeleteMenu(ID_TAP_HEAP, MF_BYCOMMAND);
 		pSubMenu->DeleteMenu(ID_TAP_TERMINATE, MF_BYCOMMAND);
 	}
-
-	POINT pos;
-	GetCursorPos(&pos);
-
-	menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN, pos.x, pos.y, this);
+	DefTrackMenu_Show(pSubMenu);
 
 	*pResult = 0;
 }

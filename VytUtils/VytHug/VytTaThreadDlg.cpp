@@ -56,6 +56,10 @@ void VytTaThreadDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(VytTaThreadDlg, CDialogEx)
+	ON_NOTIFY(NM_RCLICK, IDC_TA_THREADS, &VytTaThreadDlg::TrackThreadCommand)
+	ON_COMMAND(ID_TAT_SUSPEND, &VytTaThreadDlg::OnTatSuspend)
+	ON_COMMAND(ID_TAT_RESUME, &VytTaThreadDlg::OnTatResume)
+	ON_COMMAND(ID_TAT_TERMINATE, &VytTaThreadDlg::OnTatTerminate)
 END_MESSAGE_MAP()
 
 
@@ -73,4 +77,50 @@ BOOL VytTaThreadDlg::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void VytTaThreadDlg::TrackThreadCommand(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	if (-1 == pNMItemActivate->iItem) return;
+	m_activeThreadIndex = pNMItemActivate->iItem;
+	TrackMenu(threadCommand, IDR_TA_TRACKMENU, 1);
+}
+
+#define TidOpen(name, access, error) DWORD name## ID = _ttoi(m_threads.GetItemText(m_activeThreadIndex, 0));\
+HANDLE name = OpenThread(access, FALSE, threadID);\
+if (NULL == thread) {\
+	MessageBox(Str(error), Str(IDS_ACCESS_FAILED), MB_ICONERROR);\
+	return;\
+}
+
+void VytTaThreadDlg::OnTatSuspend()
+{
+	TidOpen(thread, THREAD_SUSPEND_RESUME, IDS_SUSPEND_FAILED);
+
+	SuspendThread(thread);
+	m_threads.SetItemText(m_activeThreadIndex, 2, GetThreadStatus(threadID));
+	CloseHandle(thread);
+}
+
+
+void VytTaThreadDlg::OnTatResume()
+{
+	TidOpen(thread, THREAD_SUSPEND_RESUME, IDS_RESUME_FAILED);
+
+	ResumeThread(thread);
+	m_threads.SetItemText(m_activeThreadIndex, 2, GetThreadStatus(threadID));
+	CloseHandle(thread);
+}
+
+
+void VytTaThreadDlg::OnTatTerminate()
+{
+	TidOpen(thread, THREAD_TERMINATE, IDS_TERMINATET_FAILED);
+
+	TerminateThread(thread, 0);
+	m_threads.DeleteItem(m_activeThreadIndex);
+	CloseHandle(thread);
 }

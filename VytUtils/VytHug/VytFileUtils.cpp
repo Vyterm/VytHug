@@ -107,6 +107,7 @@ namespace vyt
 			attr += Str(IDS_ACCESS_FAILED);
 		}
 	}
+
 	void FileUtils::CleanupDirectory(CString path)
 	{
 		DirectoryPathcheck(path);
@@ -120,5 +121,62 @@ namespace vyt
 			else
 				DeleteFile(fullpath);
 		});
+	}
+
+	CString FileUtils::SelectFilePath(CString title, CWnd *owner)
+	{
+		TCHAR szPathBuffer[MAX_PATH]{};
+		OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+		ofn.nFilterIndex = 1;
+		ofn.hwndOwner = owner->GetSafeHwnd();
+		ofn.lpstrFile = szPathBuffer;
+		ofn.nMaxFile = MAX_PATH;
+		//目录必须存在，隐藏只读选项，文件必须存在
+		ofn.Flags = OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
+		ofn.lpstrFilter = _T("所有文件\0*.*\0\0");
+		ofn.lpstrTitle = title;
+		return GetOpenFileName(&ofn) ? szPathBuffer : _T("");
+	}
+
+	CString FileUtils::SelectDirectoryPath(CString title, CWnd *owner)
+	{
+		TCHAR szPathBuffer[MAX_PATH]{};
+		BROWSEINFO bi = {};
+		bi.hwndOwner = owner->GetSafeHwnd();
+		bi.pszDisplayName = szPathBuffer;
+		bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_STATUSTEXT;
+		bi.lpszTitle = title;
+
+		LPITEMIDLIST idl = ::SHBrowseForFolder(&bi);
+		if (idl)
+		{
+			if (!::SHGetPathFromIDList(idl, szPathBuffer)) szPathBuffer[0] = 0;
+
+			IMalloc * pMalloc = NULL;
+			if (SUCCEEDED(::SHGetMalloc(&pMalloc))) // 取得IMalloc分配器接口
+			{
+				pMalloc->Free(idl); // 释放内存
+				pMalloc->Release(); // 释放接口
+			}
+		}
+		return szPathBuffer;
+	}
+	CString FileUtils::FileSizeByPath(CString path)
+	{
+		DefConvertW2A(szPath, path);
+		FILE *file;
+		fopen_s(&file, szPath, "r");
+		fseek(file, 0, SEEK_END);
+		auto size = ftell(file);
+		fclose(file);
+		return FileSizeToString(0, size);
+	}
+	CString FileUtils::FileNameByPath(CString path)
+	{
+		return path.Right(path.GetLength() - path.ReverseFind(_T('\\')) - 1);
+	}
+	CString FileUtils::FileNameByName(CString name)
+	{
+		return name.Left(name.GetLength() - name.ReverseFind(_T('.')) - 1);
 	}
 }

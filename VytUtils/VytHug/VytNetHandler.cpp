@@ -1,14 +1,24 @@
+#include "stdafx.h"
 #include "VytNetHandler.hpp"
 
-vyt::IHandler::IHandler(vyt::command opCommand, vyt::command subCommand)
-	: m_opCommand(opCommand), m_subCommand(subCommand)
+vyt::IHandler::IHandler()
 {
-	vyt::NetHandler::Get().RegisterHandler(m_opCommand, m_subCommand, *this);
 }
 
 vyt::IHandler::~IHandler()
 {
-	vyt::NetHandler::Get().UnregisterHandler(m_opCommand, m_subCommand, *this);
+	for (auto &cmd : m_listeningCommands)
+		vyt::NetHandler::Get().UnregisterHandler(cmd.first, cmd.second, *this);
+}
+
+bool vyt::IHandler::Listen(vyt::command opCommand, vyt::command subCommand)
+{
+	for (auto &cmd : m_listeningCommands)
+		if (cmd.first == opCommand && cmd.second == subCommand)
+			return false;
+	m_listeningCommands.emplace(std::pair<vyt::command, vyt::command>(opCommand, subCommand));
+	vyt::NetHandler::Get().RegisterHandler(opCommand, subCommand, *this);
+	return true;
 }
 
 vyt::NetHandler vyt::NetHandler::m_instance;

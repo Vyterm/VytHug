@@ -39,6 +39,9 @@
     <Filter Include="PE解析\目录表">
       <UniqueIdentifier>{7ffae514-2ee0-4b56-a4d5-4c6cd3c68d72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="套接字组件">
+      <UniqueIdentifier>{fb9e1536-9d44-48ef-8caf-de106dc6ca60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VytHug.h">
@@ -146,6 +149,24 @@
     <ClInclude Include="VytPeDirCommonDlg.h">
       <Filter>PE解析\目录表</Filter>
     </ClInclude>
+    <ClInclude Include="VytNetClientPeer.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytNetCmds.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytNetHandler.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
+    <ClInclude Include="Base64.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytNetPacket.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
+    <ClInclude Include="VytNetBuffer.hpp">
+      <Filter>套接字组件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmartTab.cpp">
@@ -243,6 +264,15 @@
     </ClCompile>
     <ClCompile Include="VytPeDirCommonDlg.cpp">
       <Filter>PE解析\目录表</Filter>
+    </ClCompile>
+    <ClCompile Include="VytNetClientPeer.cpp">
+      <Filter>套接字组件</Filter>
+    </ClCompile>
+    <ClCompile Include="VytNetHandler.cpp">
+      <Filter>套接字组件</Filter>
+    </ClCompile>
+    <ClCompile Include="Base64.cpp">
+      <Filter>套接字组件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

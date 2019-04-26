@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Base64.hpp"
 
 using namespace vyt;

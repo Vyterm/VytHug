@@ -1,6 +1,5 @@
 from vyterm.vythug.kernel import *
 from vyterm.conversion import *
-from vyterm.api3_rd import aliyunapi
 from threading import Lock
 from random import randint
 from functools import reduce
@@ -14,16 +13,24 @@ class VirusHandler(Handler):
         self.access_connections = {}
 
     def check(self, client, packet):
-        pass
+        md5, path = bytes_to_strings(packet)
+        if Caches().is_virus(md5):
+            client.send(OpCommand.Virus.value, VirusCommand.Check.value, strings_to_bytes(path, Caches().get_name(md5)))
 
     def over(self, client, packet):
-        pass
+        assert len(packet) == 0
+        client.send(OpCommand.Virus.value, VirusCommand.Over.value)
+
+    def submit(self, client, packet):
+        Caches().submit(bytes_to_string(packet))
+        client.send(OpCommand.Virus.value, VirusCommand.Submit.value)
 
     @property
     def handlers(self):
         return {
             VirusCommand.Check.value: self.check,
             VirusCommand.Over.value: self.over,
+            VirusCommand.Submit.value: self.submit,
         }
 
     def logout(self, client):

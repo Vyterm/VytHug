@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "VytNetClientPeer.hpp"
 #include "Base64.hpp"
 

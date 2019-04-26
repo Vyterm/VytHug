@@ -146,6 +146,10 @@
 #define IDS_SIZE                        216
 #define IDS_ORDINAL                     217
 #define IDS_PED_INT                     218
+#define IDS_SCANING                     219
+#define IDS_NOTCONNECTED                220
+#define IDS_VIRUS_SUBMIT_SUCCESS        221
+#define IDS_SCANEND                     222
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306
@@ -264,6 +268,7 @@
 #define IDC_PE_IMAGESIZE                1076
 #define IDC_PEDR_RESTREE                1076
 #define IDC_PE_DLLCHAR                  1077
+#define IDC_AN_SCANSTATE                1077
 #define IDC_PE_FILEALIGN                1080
 #define IDC_PE_VAEDIT                   1081
 #define IDC_PE_FOA_EDIT                 1082
@@ -302,7 +307,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1077
+#define _APS_NEXT_CONTROL_VALUE         1078
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

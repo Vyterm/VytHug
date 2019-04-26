@@ -187,12 +187,18 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base64.hpp" />
     <ClInclude Include="md5.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SmartList.hpp" />
     <ClInclude Include="SmartTab.hpp" />
     <ClInclude Include="VytAntiVirusDlg.h" />
     <ClInclude Include="VytComputerUtils.hpp" />
+    <ClInclude Include="VytNetBuffer.hpp" />
+    <ClInclude Include="VytNetClientPeer.hpp" />
+    <ClInclude Include="VytNetCmds.hpp" />
+    <ClInclude Include="VytNetHandler.hpp" />
+    <ClInclude Include="VytNetPacket.hpp" />
     <ClInclude Include="VytPeDirCommonDlg.h" />
     <ClInclude Include="VytPeDirDelayDlg.h" />
     <ClInclude Include="VytPeDirectoryDlg.h" />
@@ -224,12 +230,15 @@
     <ClInclude Include="VytWindowsDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Base64.cpp" />
     <ClCompile Include="md5.cpp" />
     <ClCompile Include="SmartList.cpp" />
     <ClCompile Include="SmartTab.cpp" />
     <ClCompile Include="VytAntiVirusDlg.cpp" />
     <ClCompile Include="VytComputerUtils.cpp" />
     <ClCompile Include="VytFileUtils.cpp" />
+    <ClCompile Include="VytNetClientPeer.cpp" />
+    <ClCompile Include="VytNetHandler.cpp" />
     <ClCompile Include="VytPeDirCommonDlg.cpp" />
     <ClCompile Include="VytPeDirDelayDlg.cpp" />
     <ClCompile Include="VytPeDirectoryDlg.cpp" />

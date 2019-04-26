@@ -36,7 +36,7 @@ class ClientPeer:
         sendThread.setDaemon(True)
         sendThread.start()
 
-    def send(self, opcmd: int, subcmd: int, packet: bytes):
+    def send(self, opcmd: int, subcmd: int, packet = bytes()):
         packet = struct.pack('ii', opcmd, subcmd) + packet
         packet = _cipher.Encrypt(packet)
         packet = struct.pack('i', len(packet)) + packet

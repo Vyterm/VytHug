@@ -15,6 +15,7 @@ namespace vyt
 		static CString FileSizeToString(QWORD nFileSizeHigh, QWORD nFileSizeLow);
 		static void QueryFileAttributes(const CString &path, const WIN32_FIND_DATA &filedata, CString &name, CString &attr,
 			CString &createTime, CString &visitTime, CString &modifyTime, CString &size, CString &md5);
+		static void CleanupDirectory(CString path);
 	};
 }
 

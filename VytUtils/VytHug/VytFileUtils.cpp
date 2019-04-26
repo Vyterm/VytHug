@@ -7,11 +7,16 @@ using namespace vyt;
 
 namespace vyt
 {
+	static inline void DirectoryPathcheck(CString &path)
+	{
+		if (path.GetLength() == 0 || (path[path.GetLength() - 1] != _T('\\') && path[path.GetLength() - 1] != _T('/')))
+			path += _T('\\');
+	}
+
 	void FileUtils::EnumFiles(CString path, std::function<void(const CString&, WIN32_FIND_DATA&)> fileAction, bool isDeeply/* = false*/)
 	{
 		// 1. 使用通配符 *，构建子目录和文件夹路径的字符串
-		if (path.GetLength() == 0 || (path[path.GetLength() - 1] != _T('\\') && path[path.GetLength() - 1] != _T('/')))
-			path += _T('\\');
+		DirectoryPathcheck(path);
 		CString enumpath = path + _T('*');
 		// 2. 获取第一个文件/目录，并获得查找句柄
 		WIN32_FIND_DATA filedata;
@@ -26,6 +31,7 @@ namespace vyt
 			if (isDeeply && IsDirectory(filedata))
 				EnumFiles(path + filedata.cFileName, fileAction, isDeeply);
 		} while (FindNextFile(file, &filedata));
+		FindClose(file);
 	}
 
 	bool FileUtils::IsDirectory(const WIN32_FIND_DATA &filedata)
@@ -100,5 +106,19 @@ namespace vyt
 		{
 			attr += Str(IDS_ACCESS_FAILED);
 		}
+	}
+	void FileUtils::CleanupDirectory(CString path)
+	{
+		DirectoryPathcheck(path);
+		EnumFiles(path, [](const CString &p, WIN32_FIND_DATA &filedata) {
+			CString fullpath(p + filedata.cFileName);
+			if (IsDirectory(filedata))
+			{
+				CleanupDirectory(fullpath);
+				RemoveDirectory(fullpath);
+			}
+			else
+				DeleteFile(fullpath);
+		});
 	}
 }

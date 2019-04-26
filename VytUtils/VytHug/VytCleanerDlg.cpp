@@ -90,13 +90,13 @@ void VytCleanerDlg::OnBnClickedClViewpathbutton()
 
 void VytCleanerDlg::OnBnClickedClScansys()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	SHEmptyRecycleBin(NULL, NULL, SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND);
 }
 
 
 void VytCleanerDlg::OnBnClickedClScanexp()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	FileUtils::CleanupDirectory(_T("C:\\Users\\Vyterm\\AppData\\Local\\Google\\Chrome\\User Data"));
 }
 
 

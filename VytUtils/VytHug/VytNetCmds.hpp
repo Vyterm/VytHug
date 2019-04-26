@@ -18,6 +18,7 @@ enum class VirusCommand
 {
 	Check = 0,
 	Over = 1,
+	Submit = 2,
 };
 
 #endif

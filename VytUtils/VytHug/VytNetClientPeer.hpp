@@ -20,6 +20,7 @@ namespace vyt
 		mutex m_packetMutex;
 		std::deque<Packet> m_packets;
 		SOCKET m_socket;
+		bool m_isConnected;
 	private:
 		ClientPeer()
 		{
@@ -44,6 +45,7 @@ namespace vyt
 		static Packet Recv(SOCKET &socket);
 		static DWORD CALLBACK RecvProc(LPVOID pArg);
 	public:
+		bool IsConnected() const;
 		bool Connect(CString address, short port);
 		bool Send(Packet packet);
 		// This method return nullptr while empty in queue.

@@ -38,24 +38,32 @@ namespace vyt
 			guard g(client.m_packetMutex);
 			client.m_packets.push_back(packet);
 		}
+		client.m_isConnected = false;
 		return 0;
+	}
+
+	bool ClientPeer::IsConnected() const
+	{
+		return m_isConnected;
 	}
 
 	bool ClientPeer::Connect(CString address, short port)
 	{
+		if (m_isConnected) return false;
 		sockaddr_in addr = { };
 		addr.sin_family = AF_INET;
 		//addr.sin_addr.S_un.S_addr = inet_addr(address);
 		InetPton(AF_INET, address, &addr.sin_addr.s_addr);
 		addr.sin_port = htons(port);
-		bool success = 0 == ::connect(m_socket, (sockaddr*)&addr, sizeof(sockaddr_in));
-		if (success)
+		m_isConnected = 0 == ::connect(m_socket, (sockaddr*)&addr, sizeof(sockaddr_in));
+		if (m_isConnected)
 			CreateThread(nullptr, 0, &RecvProc, this, 0, nullptr);
-		return success;
+		return m_isConnected;
 	}
 
 	bool ClientPeer::Send(Packet packet)
 	{
+		if (!m_isConnected) return false;
 		// 因为打包后的Packet已经将头部和尾部合并起来，所以需要去除标识长度的字节再编码为Base64
 		packet->m_buffer->m_buffer += sizeof(vytsize);
 		packet->m_buffer->m_size -= sizeof(vytsize);

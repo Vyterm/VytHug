@@ -274,12 +274,19 @@
 #define IDC_PE_FILEALIGN                1080
 #define IDC_PEDT_EDIT1                  1080
 #define IDC_PE_VAEDIT                   1081
+#define IDC_PEDD_EDIT1                  1081
 #define IDC_PE_FOA_EDIT                 1082
+#define IDC_PEDD_EDIT2                  1082
+#define IDC_PEDD_EDIT3                  1083
+#define IDC_PEDD_EDIT4                  1084
 #define IDC_PEDT_EDIT2                  1085
+#define IDC_PEDD_EDIT5                  1085
 #define IDC_PEDT_EDIT3                  1086
+#define IDC_PEDD_EDIT6                  1086
 #define IDC_PEDT_EDIT4                  1087
+#define IDC_EDIT7                       1087
+#define IDC_PEDD_EDIT7                  1087
 #define IDC_PEDT_EDIT5                  1088
-#define IDC_EDIT6                       1089
 #define IDC_PEDT_EDIT6                  1089
 #define ID_32771                        32771
 #define ID_32772                        32772
@@ -316,7 +323,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32799
-#define _APS_NEXT_CONTROL_VALUE         1081
+#define _APS_NEXT_CONTROL_VALUE         1082
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

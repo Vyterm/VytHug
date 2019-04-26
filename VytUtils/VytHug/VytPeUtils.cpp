@@ -120,12 +120,13 @@ const std::deque<PIMAGE_SECTION_HEADER>& PeUtils::Sections() const
 	return m_sections;
 }
 
+#define PreConvert(table, index, type) auto table## Rva = m_directorys[index]->VirtualAddress;\
+if (NULL == table## Rva) return false;\
+auto table = RvaToPointer<type>(table## Rva);
+
 bool vyt::PeUtils::ForeachExportTable(std::function<void(LPCSTR)> nameAction, std::function<void(FunctionField)> funcAction)
 {
-	auto exportRva = m_directorys[IMAGE_DIRECTORY_ENTRY_EXPORT]->VirtualAddress;
-	if (NULL == exportRva)
-		return false;
-	PIMAGE_EXPORT_DIRECTORY pExport = RvaToPointer<PIMAGE_EXPORT_DIRECTORY>(exportRva);
+	PreConvert(pExport, IMAGE_DIRECTORY_ENTRY_EXPORT, PIMAGE_EXPORT_DIRECTORY);
 	// 输出模块名
 	nameAction(RvaToPointer<LPCSTR>(pExport->Name));
 	// 遍历导出表
@@ -153,10 +154,7 @@ bool vyt::PeUtils::ForeachExportTable(std::function<void(LPCSTR)> nameAction, st
 
 bool vyt::PeUtils::ForeachImportTable(std::function<void(LPCSTR, PIMAGE_IMPORT_DESCRIPTOR)> importAction)
 {
-	auto importRva = m_directorys[IMAGE_DIRECTORY_ENTRY_IMPORT]->VirtualAddress;
-	if (NULL == importRva)
-		return false;
-	PIMAGE_IMPORT_DESCRIPTOR pImport = RvaToPointer<PIMAGE_IMPORT_DESCRIPTOR>(importRva);
+	PreConvert(pImport, IMAGE_DIRECTORY_ENTRY_IMPORT, PIMAGE_IMPORT_DESCRIPTOR);
 	for (; NULL != pImport->Name; ++pImport)
 		importAction(RvaToPointer<LPCSTR>(pImport->Name), pImport);
 	return true;
@@ -191,11 +189,7 @@ else resourceAction({ entry->Id, layer });\
 
 bool vyt::PeUtils::ForeachResourceTable(std::function<void(ResourceField)> resourceAction, std::function<void(PIMAGE_RESOURCE_DATA_ENTRY)> dataAction)
 {
-	auto resourceRva = m_directorys[IMAGE_DIRECTORY_ENTRY_RESOURCE]->VirtualAddress;
-	if (NULL == resourceRva)
-		return false;
-
-	PIMAGE_RESOURCE_DIRECTORY rootDirectory = RvaToPointer<PIMAGE_RESOURCE_DIRECTORY>(resourceRva);
+	PreConvert(rootDirectory, IMAGE_DIRECTORY_ENTRY_RESOURCE, PIMAGE_RESOURCE_DIRECTORY);
 	// 第一层，资源的种类
 	DWORD typeCount = rootDirectory->NumberOfIdEntries + rootDirectory->NumberOfNamedEntries;
 	PIMAGE_RESOURCE_DIRECTORY_ENTRY typeEntry = (PIMAGE_RESOURCE_DIRECTORY_ENTRY)(rootDirectory + 1);
@@ -230,10 +224,7 @@ bool vyt::PeUtils::ForeachResourceTable(std::function<void(ResourceField)> resou
 
 bool vyt::PeUtils::ForeachRelocationTable(std::function<void(RelocationField)> relocationAction)
 {
-	auto relocRva = m_directorys[IMAGE_DIRECTORY_ENTRY_BASERELOC]->VirtualAddress;
-	if (NULL == relocRva)
-		return false;
-	auto pRelocation = RvaToPointer<PIMAGE_BASE_RELOCATION>(relocRva);
+	PreConvert(pRelocation, IMAGE_DIRECTORY_ENTRY_BASERELOC, PIMAGE_BASE_RELOCATION);
 	struct TypeOffset
 	{
 		WORD Offset : 12;
@@ -260,15 +251,14 @@ bool vyt::PeUtils::ForeachRelocationTable(std::function<void(RelocationField)> r
 
 bool vyt::PeUtils::ForeachTlsTable(std::function<void(PIMAGE_TLS_DIRECTORY)> tlsAction)
 {
-	auto tlsRva = m_directorys[IMAGE_DIRECTORY_ENTRY_BASERELOC]->VirtualAddress;
-	if (NULL == tlsRva)
-		return false;
-	auto pTLS = RvaToPointer<PIMAGE_TLS_DIRECTORY>(tlsRva);
+	PreConvert(pTLS, IMAGE_DIRECTORY_ENTRY_BASERELOC, PIMAGE_TLS_DIRECTORY);
 	tlsAction(pTLS);
 	return true;
 }
 
-bool vyt::PeUtils::ForeachDelayTable()
+bool vyt::PeUtils::ForeachDelayTable(std::function<void(PIMAGE_DELAYLOAD_DESCRIPTOR)> delayAction)
 {
-	return false;
+	PreConvert(delayImportTable, IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT, PIMAGE_DELAYLOAD_DESCRIPTOR);
+	delayAction(delayImportTable);
+	return true;
 }

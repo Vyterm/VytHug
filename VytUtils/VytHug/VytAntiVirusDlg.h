@@ -3,6 +3,7 @@
 #include "SmartList.hpp"
 #include "VytNetHandler.hpp"
 #include <map>
+#include <set>
 // VytAntiVirusDlg 对话框
 
 class VytAntiVirusDlg : public CDialogEx, public vyt::IHandler
@@ -21,6 +22,8 @@ public:
 private:
 	bool m_isScaning;
 	std::map<CString, CString> m_md5ToFiles;
+	int m_virusIndex;
+	std::set<CString> m_whiteFiles;
 private:
 	void ComeRefresh();
 	void RefreshScan(CString path = nullptr);
@@ -50,4 +53,7 @@ public:
 	afx_msg void DeleteAllViruses();
 	afx_msg void SubmitVirus();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void TrackVirusCommand(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnAnDelete();
+	afx_msg void OnAnWhiteit();
 };

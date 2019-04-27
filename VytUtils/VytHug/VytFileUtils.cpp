@@ -133,7 +133,7 @@ namespace vyt
 		ofn.nMaxFile = MAX_PATH;
 		//目录必须存在，隐藏只读选项，文件必须存在
 		ofn.Flags = OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
-		ofn.lpstrFilter = _T("所有文件\0*.*\0\0");
+		ofn.lpstrFilter = _T("所有文件(*.*)\0*.*\0\0");
 		ofn.lpstrTitle = title;
 		return GetOpenFileName(&ofn) ? szPathBuffer : _T("");
 	}

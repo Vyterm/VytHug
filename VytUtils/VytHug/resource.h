@@ -73,6 +73,7 @@
 #define IDS_RESUME_FAILED               146
 #define IDR_TE_TRACKMENU                146
 #define IDS_CPU                         147
+#define IDR_AN_TRACKMENU                147
 #define IDS_MEMORY                      148
 #define IDS_ABOUTBOX                    149
 #define IDS_CLEANER                     150
@@ -327,13 +328,17 @@
 #define ID_TE_DELETEBOOT                32804
 #define ID_TE_REFRESH                   32805
 #define ID_TE_REFRESHBOOT               32806
+#define ID_32807                        32807
+#define ID_32808                        32808
+#define ID_AN_DELETE                    32809
+#define ID_AN_WHITEIT                   32810
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        147
-#define _APS_NEXT_COMMAND_VALUE         32807
+#define _APS_NEXT_RESOURCE_VALUE        148
+#define _APS_NEXT_COMMAND_VALUE         32811
 #define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

@@ -59,6 +59,7 @@ CloseHandle(thread); } // 关闭句柄让线程结束后自动释放，避免内
 
 void VytAntiVirusDlg::ComeRefresh()
 {
+	m_viruses.DeleteAllItems();
 	m_md5ToFiles.clear();
 	m_isScaning = true;
 }
@@ -72,6 +73,7 @@ void VytAntiVirusDlg::RefreshScan(CString path)
 
 void VytAntiVirusDlg::AppendVirus(CString path)
 {
+	if (m_whiteFiles.find(path) != m_whiteFiles.end()) return;
 	m_viruses.InsertTexts(FileUtils::FileNameByPath(path), 2, FileUtils::FileSizeByPath(path), path);
 }
 
@@ -151,6 +153,9 @@ BEGIN_MESSAGE_MAP(VytAntiVirusDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_AN_DELETEALL, &VytAntiVirusDlg::DeleteAllViruses)
 	ON_BN_CLICKED(IDC_AN_SENDTOSERVER, &VytAntiVirusDlg::SubmitVirus)
 	ON_WM_TIMER()
+	ON_NOTIFY(NM_RCLICK, IDC_AN_VIRUSLIST, &VytAntiVirusDlg::TrackVirusCommand)
+	ON_COMMAND(ID_AN_DELETE, &VytAntiVirusDlg::OnAnDelete)
+	ON_COMMAND(ID_AN_WHITEIT, &VytAntiVirusDlg::OnAnWhiteit)
 END_MESSAGE_MAP()
 
 
@@ -211,4 +216,28 @@ void VytAntiVirusDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	__super::OnTimer(nIDEvent);
 	DispatchLoop();
+}
+
+
+void VytAntiVirusDlg::TrackVirusCommand(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	m_virusIndex = pNMItemActivate->iItem;
+	if (-1 == m_virusIndex) return;
+	TrackMenu(IDR_AN_TRACKMENU, 0);
+}
+
+
+void VytAntiVirusDlg::OnAnDelete()
+{
+	DeleteFile(m_viruses.GetItemText(m_virusIndex, 2));
+	m_viruses.DeleteItem(m_virusIndex);
+}
+
+
+void VytAntiVirusDlg::OnAnWhiteit()
+{
+	m_whiteFiles.emplace(m_viruses.GetItemText(m_virusIndex, 2));
+	m_viruses.DeleteItem(m_virusIndex);
 }

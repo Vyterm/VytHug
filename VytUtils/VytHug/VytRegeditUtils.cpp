@@ -97,10 +97,11 @@ void vyt::RegeditUtils::EnumSoftwares(std::function<void(SoftwareInfo&)> softwar
 	LPCTSTR subKey = Is64BitOS() ? Win64Path : Win32Path;
 	EnumRegeditKey(rootKey, subKey, [&](const HKEY &key, CString &keyBuffer) {
 		// 2.1. 通过得到的子键名称重新组合成新的子键路径
-		keyBuffer.Format(_T("%s\\%s"), subKey, keyBuffer);
+		CString newBuffer;// 某些情况下使用keyBuffer.Format会抛出Buffer is too small异常，因此重新定义一个CString进行Format
+		newBuffer.Format(_T("%s\\%s"), subKey, keyBuffer);
 		// 2.2. 打开新的子键，获取其句柄
 		HKEY softkey = NULL;
-		if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, keyBuffer, 0, KEY_QUERY_VALUE, &softkey)) return;
+		if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, newBuffer, 0, KEY_QUERY_VALUE, &softkey)) return;
 		// 2.3. 获取键值
 		SoftwareInfo software = {};
 		DWORD nameLen = _countof(software.szSoftName);

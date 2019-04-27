@@ -21,9 +21,9 @@ public:
 
 private:
 	bool m_isScaning;
-	std::map<CString, CString> m_md5ToFiles;
 	int m_virusIndex;
 	std::set<CString> m_whiteFiles;
+	std::set<CString> m_virusLibrary;
 private:
 	void ComeRefresh();
 	void RefreshScan(CString path = nullptr);

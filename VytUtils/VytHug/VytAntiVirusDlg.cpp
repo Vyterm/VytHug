@@ -60,7 +60,6 @@ CloseHandle(thread); } // 关闭句柄让线程结束后自动释放，避免内
 void VytAntiVirusDlg::ComeRefresh()
 {
 	m_viruses.DeleteAllItems();
-	m_md5ToFiles.clear();
 	m_isScaning = true;
 }
 
@@ -90,8 +89,9 @@ void VytAntiVirusDlg::LocalScan(CString path)
 {
 	ScanRefresh();
 	auto md5 = md5FileValue(path);
-	if (_T("19c3c70a1e4273fce91586b2cd758f43") == md5)
-		AppendVirus(path);
+	for (auto &virus: m_virusLibrary)
+		if (virus == md5)
+			AppendVirus(path);
 }
 
 void VytAntiVirusDlg::LocalScanDeeply(CString path)
@@ -171,6 +171,8 @@ BOOL VytAntiVirusDlg::OnInitDialog()
 	m_viruses.InsertColumn(Str(IDS_SIZE), 100);
 	m_viruses.InsertColumn(Str(IDS_PATHABSOLUTE), 600);
 	SetTimer(WM_USER, 1000, nullptr);
+	m_virusLibrary.emplace(_T("b9ff516508d7d2f55bf372c3f38bd0eb"));
+	m_virusLibrary.emplace(_T("19c3c70a1e4273fce91586b2cd758f43"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE

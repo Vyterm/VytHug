@@ -75,6 +75,7 @@
 #define IDS_CPU                         147
 #define IDR_AN_TRACKMENU                147
 #define IDS_MEMORY                      148
+#define IDR_WI_TRACKMENU                148
 #define IDS_ABOUTBOX                    149
 #define IDS_CLEANER                     150
 #define IDS_PATHHINT                    151
@@ -334,13 +335,18 @@
 #define ID_32808                        32808
 #define ID_AN_DELETE                    32809
 #define ID_AN_WHITEIT                   32810
+#define ID_32811                        32811
+#define ID_32812                        32812
+#define ID_WI_CLOSE                     32813
+#define ID_WI_UPDATE                    32814
+#define ID_WI_REFRESH                   32815
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        148
-#define _APS_NEXT_COMMAND_VALUE         32811
+#define _APS_NEXT_RESOURCE_VALUE        149
+#define _APS_NEXT_COMMAND_VALUE         32816
 #define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

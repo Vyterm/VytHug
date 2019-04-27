@@ -43,6 +43,9 @@ void VytWindowsDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(VytWindowsDlg, CDialogEx)
+	ON_NOTIFY(NM_RCLICK, IDC_WI_LIST, &VytWindowsDlg::TrackWindowCommand)
+	ON_COMMAND(ID_WI_CLOSE, &VytWindowsDlg::OnWiClose)
+	ON_COMMAND(ID_WI_REFRESH, &VytWindowsDlg::OnWiRefresh)
 END_MESSAGE_MAP()
 
 
@@ -61,4 +64,29 @@ BOOL VytWindowsDlg::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void VytWindowsDlg::TrackWindowCommand(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	m_windowIndex = pNMItemActivate->iItem;
+	if (-1 == m_windowIndex) return;
+	TrackMenu(IDR_WI_TRACKMENU, 0);
+}
+
+
+void VytWindowsDlg::OnWiClose()
+{
+	HWND hWnd;
+	_stscanf_s(m_windows.GetItemText(m_windowIndex, 0), _T("%p"), &hWnd);
+	::PostMessage(hWnd, WM_SYSCOMMAND, SC_CLOSE, 0);
+	UpdateWindows();
+}
+
+
+void VytWindowsDlg::OnWiRefresh()
+{
+	UpdateWindows();
 }

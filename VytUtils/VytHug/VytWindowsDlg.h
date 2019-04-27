@@ -17,6 +17,8 @@ public:
 #endif
 
 private:
+	int m_windowIndex;
+private:
 	void UpdateWindows();
 
 protected:
@@ -26,4 +28,7 @@ protected:
 public:
 	vyt::SmartList m_windows;
 	virtual BOOL OnInitDialog();
+	afx_msg void TrackWindowCommand(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnWiClose();
+	afx_msg void OnWiRefresh();
 };

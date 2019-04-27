@@ -126,7 +126,7 @@ EnumRegeditValue(kr, _T(#ks), [&](const HKEY &key, CString &keyBuffer) {\
 	bootstrapInfo.bootName = keyBuffer;\
 	DWORD orderLen = MAX_PATH;\
 	RegQueryValueEx(key, keyBuffer, 0, nullptr, (LPBYTE)bootstrapInfo.bootOrder.GetBuffer(orderLen), &orderLen);\
-	bootstrapInfo.key = _T(#kr);\
+	bootstrapInfo.key = kr;\
 	bootstrapInfo.bootPos = _T(#ks);\
 	bootstrapInfo.bootPos_All = _T(#kr"\\"#ks);\
 	bootstrapAction(bootstrapInfo);\
@@ -138,12 +138,22 @@ void vyt::RegeditUtils::EnumBootstraps(std::function<void(BootstrapInfo&)> boots
 	EnumBootstrapsTemplate(HKEY_LOCAL_MACHINE, SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run);
 }
 
-bool vyt::RegeditUtils::AppendBootstrap(CString exepath)
+bool vyt::RegeditUtils::AppendBootstrap(CString keyname, CString exepath)
 {
-	return false;
+	HKEY key;
+	auto ret = RegOpenKeyEx(HKEY_CURRENT_USER, _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"), 0, KEY_WRITE, &key);
+	if (ret != ERROR_SUCCESS) return false;
+	ret = RegSetValueEx(key, keyname, 0, REG_SZ, (PBYTE)exepath.GetString(), exepath.GetLength()*sizeof(TCHAR));
+	RegCloseKey(key);
+	return ret == ERROR_SUCCESS;
 }
 
 bool vyt::RegeditUtils::DeleteBootstrap(const BootstrapInfo & bootInfo)
 {
-	return false;
+	HKEY key;
+	long ret = RegOpenKeyEx(bootInfo.key, bootInfo.bootPos, 0, KEY_WRITE, &key);
+	if (ret != ERROR_SUCCESS) return false;
+	ret = RegDeleteValue(key, bootInfo.bootName);
+	RegCloseKey(key);
+	return ret == ERROR_SUCCESS;
 }

@@ -153,6 +153,8 @@
 #define IDS_VIRUS_SUBMIT_SUCCESS        221
 #define IDS_SCANEND                     222
 #define IDS_CLEANHINT                   223
+#define IDS_BOOTSTRAPSUCCESS            224
+#define IDS_BOOTSTRAPFAILED             225
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306

@@ -28,14 +28,14 @@ namespace vyt
 		static void EnumSoftwares(std::function<void(SoftwareInfo&)> softwareAction);
 		struct BootstrapInfo
 		{
+			HKEY key;
 			CString bootName;
 			CString bootOrder;
-			CString key;
 			CString bootPos;
 			CString bootPos_All;
 		};
 		static void EnumBootstraps(std::function<void(BootstrapInfo&)> bootstrapAction);
-		static bool AppendBootstrap(CString exepath);
+		static bool AppendBootstrap(CString keyname, CString exepath);
 		static bool DeleteBootstrap(const BootstrapInfo &bootInfo);
 	};
 }

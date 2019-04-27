@@ -190,17 +190,32 @@ void VytTediousDlg::OnRclickTeStartuplist(NMHDR *pNMHDR, LRESULT *pResult)
 void VytTediousDlg::OnTeInsertboot()
 {
 	auto path = FileUtils::SelectFilePath();
-	if (_tcscmp(_T("exe"), PathFindExtension(path)))
+	if (_tcscmp(_T(".exe"), PathFindExtension(path)))
 	{
 		MessageBox(Str(IDS_ACCESS_FAILED));
 		return;
+	}
+	// 去除路径及拓展名
+	auto keyname = FileUtils::FileNameByName(FileUtils::FileNameByPath(path));
+	if (!RegeditUtils::AppendBootstrap(keyname, path))
+		MessageBox(Str(IDS_BOOTSTRAPFAILED), Str(IDS_ACCESS_FAILED));
+	else
+	{
+		MessageBox(Str(IDS_BOOTSTRAPSUCCESS), Str(IDS_STATUS));
+		UpdateBootInfos();
 	}
 }
 
 
 void VytTediousDlg::OnTeDeleteboot()
 {
-	// TODO: 在此添加命令处理程序代码
+	if (!RegeditUtils::DeleteBootstrap(m_bootstrapInfos[m_bootstrapIndex]))
+		MessageBox(Str(IDS_BOOTSTRAPFAILED), Str(IDS_ACCESS_FAILED));
+	else
+	{
+		MessageBox(Str(IDS_BOOTSTRAPSUCCESS), Str(IDS_STATUS));
+		UpdateBootInfos();
+	}
 }
 
 

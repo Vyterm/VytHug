@@ -71,6 +71,7 @@
 #define IDD_PED_COMMON                  144
 #define IDS_SUSPEND_FAILED              145
 #define IDS_RESUME_FAILED               146
+#define IDR_TE_TRACKMENU                146
 #define IDS_CPU                         147
 #define IDS_MEMORY                      148
 #define IDS_ABOUTBOX                    149
@@ -150,6 +151,7 @@
 #define IDS_NOTCONNECTED                220
 #define IDS_VIRUS_SUBMIT_SUCCESS        221
 #define IDS_SCANEND                     222
+#define IDS_CLEANHINT                   223
 #define IDD_VYTHUG_DIALOG               302
 #define IDD_SOFTWARE                    305
 #define IDD_SERVICE                     306
@@ -212,6 +214,7 @@
 #define IDC_TE_PROGRESSMEMORY           1027
 #define IDC_LIST1                       1028
 #define IDC_AN_VIRUSLIST                1028
+#define IDC_TE_STARTUPLIST              1028
 #define IDC_LIST2                       1030
 #define IDC_RADIO1                      1031
 #define IDC_AN_LIBOP1                   1031
@@ -278,6 +281,7 @@
 #define IDC_PE_FOA_EDIT                 1082
 #define IDC_PEDD_EDIT2                  1082
 #define IDC_PEDD_EDIT3                  1083
+#define IDC_TE_CLEANHINT                1083
 #define IDC_PEDD_EDIT4                  1084
 #define IDC_PEDT_EDIT2                  1085
 #define IDC_PEDD_EDIT5                  1085
@@ -316,14 +320,21 @@
 #define ID_SO_EXPLORER                  32797
 #define ID_TAP_HEAP                     32798
 #define ID_32799                        32799
+#define ID_32800                        32800
+#define ID_32801                        32801
+#define ID_32802                        32802
+#define ID_TE_INSERTBOOT                32803
+#define ID_TE_DELETEBOOT                32804
+#define ID_TE_REFRESH                   32805
+#define ID_TE_REFRESHBOOT               32806
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        146
-#define _APS_NEXT_COMMAND_VALUE         32800
-#define _APS_NEXT_CONTROL_VALUE         1082
+#define _APS_NEXT_RESOURCE_VALUE        147
+#define _APS_NEXT_COMMAND_VALUE         32807
+#define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

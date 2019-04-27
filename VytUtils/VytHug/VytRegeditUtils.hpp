@@ -26,6 +26,17 @@ namespace vyt
 			TCHAR szSoftIcon[MAX_PATH];
 		};
 		static void EnumSoftwares(std::function<void(SoftwareInfo&)> softwareAction);
+		struct BootstrapInfo
+		{
+			CString bootName;
+			CString bootOrder;
+			CString key;
+			CString bootPos;
+			CString bootPos_All;
+		};
+		static void EnumBootstraps(std::function<void(BootstrapInfo&)> bootstrapAction);
+		static bool AppendBootstrap(CString exepath);
+		static bool DeleteBootstrap(const BootstrapInfo &bootInfo);
 	};
 }
 

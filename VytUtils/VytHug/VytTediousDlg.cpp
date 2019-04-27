@@ -6,6 +6,8 @@
 #include "VytTediousDlg.h"
 #include "afxdialogex.h"
 #include "VytComputerUtils.hpp"
+#include "VytFileUtils.hpp"
+#include "VytRegeditUtils.hpp"
 using namespace vyt;
 
 // VytTediousDlg 对话框
@@ -15,6 +17,7 @@ IMPLEMENT_DYNAMIC(VytTediousDlg, CDialogEx)
 
 VytTediousDlg::VytTediousDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_TEDIOUS, pParent)
+	, m_cleanHint(_T(""))
 {
 
 }
@@ -46,12 +49,24 @@ void VytTediousDlg::UpdateUtilization()
 	SetDlgItemText(IDC_TE_MEMORYTEXT, memoryString);
 }
 
+void VytTediousDlg::UpdateBootInfos()
+{
+	m_startups.DeleteAllItems();
+	m_bootstrapInfos.clear();
+	RegeditUtils::EnumBootstraps([this](vyt::RegeditUtils::BootstrapInfo &bootInfo) {
+		m_startups.InsertTexts(bootInfo.bootName, 2, bootInfo.bootOrder, bootInfo.bootPos_All);
+		m_bootstrapInfos.push_back(std::move(bootInfo));
+	});
+}
+
 void VytTediousDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TE_PROGRESSCPU, m_cpuProgress);
 	DDX_Control(pDX, IDC_TE_PROGRESSMEMORY, m_memoryProgress);
 	DDX_Control(pDX, IDC_TE_POWERRAISING, m_rootbutton);
+	DDX_Text(pDX, IDC_TE_CLEANHINT, m_cleanHint);
+	DDX_Control(pDX, IDC_TE_STARTUPLIST, m_startups);
 }
 
 
@@ -65,6 +80,10 @@ BEGIN_MESSAGE_MAP(VytTediousDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_TE_SLEEP, &VytTediousDlg::OnBnClickedTeSleep)
 	ON_BN_CLICKED(IDC_TE_LOCK, &VytTediousDlg::OnBnClickedTeLock)
 	ON_BN_CLICKED(IDC_TE_POWERRAISING, &VytTediousDlg::OnBnClickedTePowerraising)
+	ON_NOTIFY(NM_RCLICK, IDC_TE_STARTUPLIST, &VytTediousDlg::OnRclickTeStartuplist)
+	ON_COMMAND(ID_TE_INSERTBOOT, &VytTediousDlg::OnTeInsertboot)
+	ON_COMMAND(ID_TE_DELETEBOOT, &VytTediousDlg::OnTeDeleteboot)
+	ON_COMMAND(ID_TE_REFRESHBOOT, &VytTediousDlg::OnTeRefreshboot)
 END_MESSAGE_MAP()
 
 
@@ -82,6 +101,9 @@ BOOL VytTediousDlg::OnInitDialog()
 	m_cpuProgress.SetRange(0, 100);
 	m_memoryProgress.SetRange(0, 100);
 	UpdateUtilization();
+	m_startups.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
+	m_startups.InsertColumn(3, Str(IDS_TASK), 200, Str(IDS_ORDER), 300, Str(IDS_POSITION), 300);
+	UpdateBootInfos();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
@@ -99,7 +121,9 @@ void VytTediousDlg::OnTimer(UINT_PTR nIDEvent)
 
 void VytTediousDlg::OnBnClickedTeCleanmemory()
 {
-	ComputerUtils::Cleanmemory();
+	auto freesize = ComputerUtils::Cleanmemory();
+	m_cleanHint.Format(Str(IDS_CLEANHINT), FileUtils::FileSizeToString(freesize >> 32, freesize & 0xFFFFFFFF));
+	UpdateData(FALSE);
 }
 
 
@@ -148,4 +172,39 @@ void VytTediousDlg::OnBnClickedTePowerraising()
 		exit(0);
 	else
 		AfxGetMainWnd()->ShowWindow(SW_SHOW);
+}
+
+
+void VytTediousDlg::OnRclickTeStartuplist(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	m_bootstrapIndex = pNMItemActivate->iItem;
+	DefTrackMenu(bootMenu, IDR_TE_TRACKMENU, 0);
+	if (-1 == m_bootstrapIndex)
+		bootMenu->DeleteMenu(ID_TE_DELETEBOOT, MF_BYCOMMAND);
+	DefTrackMenu_Show(bootMenu);
+}
+
+
+void VytTediousDlg::OnTeInsertboot()
+{
+	auto path = FileUtils::SelectFilePath();
+	if (_tcscmp(_T("exe"), PathFindExtension(path)))
+	{
+		MessageBox(Str(IDS_ACCESS_FAILED));
+		return;
+	}
+}
+
+
+void VytTediousDlg::OnTeDeleteboot()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+
+void VytTediousDlg::OnTeRefreshboot()
+{
+	UpdateBootInfos();
 }

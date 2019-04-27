@@ -65,6 +65,29 @@ bool vyt::RegeditUtils::Is64BitOS()
 	return si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64;
 }
 
+#define EnumRegeditTemplate(token) HKEY result = NULL;\
+if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, subKey, 0, KEY_ENUMERATE_SUB_KEYS | KEY_QUERY_VALUE, &result)) return;\
+DWORD index = 0;\
+TCHAR keyName[MAX_PATH] = {};\
+DWORD keyLen = MAX_PATH;\
+while (ERROR_NO_MORE_ITEMS != RegEnum##token(result, index++, keyName, &keyLen, 0, nullptr, nullptr, nullptr)) {\
+	CString keyBuffer = keyName;\
+	ZeroMemory(keyName, MAX_PATH);\
+	keyLen = MAX_PATH;\
+	if (!keyBuffer.IsEmpty())\
+		keyAction(result, keyBuffer);\
+} RegCloseKey(result);
+
+static void EnumRegeditKey(HKEY rootKey, LPCTSTR subKey, std::function<void(const HKEY&,CString&)> keyAction)
+{
+	EnumRegeditTemplate(KeyEx);
+}
+
+static void EnumRegeditValue(HKEY rootKey, LPCTSTR subKey, std::function<void(const HKEY&, CString&)> keyAction)
+{
+	EnumRegeditTemplate(Value);
+}
+
 void vyt::RegeditUtils::EnumSoftwares(std::function<void(SoftwareInfo&)> softwareAction)
 {
 	constexpr LPCTSTR Win32Path = _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall");
@@ -72,28 +95,17 @@ void vyt::RegeditUtils::EnumSoftwares(std::function<void(SoftwareInfo&)> softwar
 	// 1. 打开注册表键
 	HKEY rootKey = HKEY_LOCAL_MACHINE;
 	LPCTSTR subKey = Is64BitOS() ? Win64Path : Win32Path;
-	HKEY result = NULL;
-	if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, subKey, 0, KEY_ENUMERATE_SUB_KEYS | KEY_QUERY_VALUE, &result)) return;
-	// 2. 循环遍历Uninstall目录下的子键
-	DWORD index = 0;
-	DWORD keyLen = MAX_PATH;
-	TCHAR keyName[MAX_PATH] = {};
-	while (ERROR_NO_MORE_ITEMS != RegEnumKeyEx(result, index++, keyName, &keyLen, 0, nullptr, nullptr, nullptr))
-	{
-		CString szMidReg = keyName;
-		ZeroMemory(keyName, MAX_PATH);
-		keyLen = MAX_PATH;
-		if (szMidReg.IsEmpty()) continue;
+	EnumRegeditKey(rootKey, subKey, [&](const HKEY &key, CString &keyBuffer) {
 		// 2.1. 通过得到的子键名称重新组合成新的子键路径
-		szMidReg.Format(_T("%s\\%s"), subKey, szMidReg);
+		keyBuffer.Format(_T("%s\\%s"), subKey, keyBuffer);
 		// 2.2. 打开新的子键，获取其句柄
 		HKEY softkey = NULL;
-		if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, szMidReg, 0, KEY_QUERY_VALUE, &softkey)) continue;
+		if (ERROR_SUCCESS != RegOpenKeyEx(rootKey, keyBuffer, 0, KEY_QUERY_VALUE, &softkey)) return;
 		// 2.3. 获取键值
 		SoftwareInfo software = {};
 		DWORD nameLen = _countof(software.szSoftName);
 		RegQueryValueEx(softkey, _T("DisplayName"), 0, nullptr, (LPBYTE)software.szSoftName, &nameLen);
-		if (NULL == software.szSoftName[0]) continue;
+		if (NULL == software.szSoftName[0]) return;
 		nameLen = _countof(software.szSoftVersion);
 		RegQueryValueEx(softkey, _T("DisplayVersion"), 0, nullptr, (LPBYTE)software.szSoftVersion, &nameLen);
 		nameLen = _countof(software.szSoftInsPath);
@@ -105,6 +117,33 @@ void vyt::RegeditUtils::EnumSoftwares(std::function<void(SoftwareInfo&)> softwar
 		nameLen = _countof(software.szSoftDate);
 		RegQueryValueEx(softkey, _T("InstallDate"), 0, nullptr, (LPBYTE)software.szSoftDate, &nameLen);
 		softwareAction(software);
-	}
-	RegCloseKey(result);
+	});
+}
+
+#define EnumBootstrapsTemplate(kr, ks) \
+EnumRegeditValue(kr, _T(#ks), [&](const HKEY &key, CString &keyBuffer) {\
+	vyt::RegeditUtils::BootstrapInfo bootstrapInfo;\
+	bootstrapInfo.bootName = keyBuffer;\
+	DWORD orderLen = MAX_PATH;\
+	RegQueryValueEx(key, keyBuffer, 0, nullptr, (LPBYTE)bootstrapInfo.bootOrder.GetBuffer(orderLen), &orderLen);\
+	bootstrapInfo.key = _T(#kr);\
+	bootstrapInfo.bootPos = _T(#ks);\
+	bootstrapInfo.bootPos_All = _T(#kr"\\"#ks);\
+	bootstrapAction(bootstrapInfo);\
+});
+
+void vyt::RegeditUtils::EnumBootstraps(std::function<void(BootstrapInfo&)> bootstrapAction)
+{
+	EnumBootstrapsTemplate(HKEY_CURRENT_USER, SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run);
+	EnumBootstrapsTemplate(HKEY_LOCAL_MACHINE, SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run);
+}
+
+bool vyt::RegeditUtils::AppendBootstrap(CString exepath)
+{
+	return false;
+}
+
+bool vyt::RegeditUtils::DeleteBootstrap(const BootstrapInfo & bootInfo)
+{
+	return false;
 }

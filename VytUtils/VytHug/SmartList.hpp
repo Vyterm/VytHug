@@ -16,8 +16,9 @@ namespace vyt
 		SmartList();
 		virtual ~SmartList();
 
-		void InsertTexts(CString title, int textCount = 0, ...);
+		void InsertTexts(CString title, DWORD textCount = 0, ...);
 		void InsertColumn(CString title, int width);
+		void InsertColumn(DWORD columnCount, ...);
 	protected:
 		int m_columnIndex;
 	};

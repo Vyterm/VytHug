@@ -72,6 +72,7 @@ void CVytHugDlg::DoDataExchange(CDataExchange* pDX)
 
 void CVytHugDlg::InitUI()
 {
+	m_hometab.SetDlg<VytPeLoaderDlg>(IDD_PELOADER, vyt::Str(IDS_PELOADER));
 	m_hometab.SetDlg<VytCleanerDlg>(IDD_CLEANER, vyt::Str(IDS_CLEANER));
 	m_hometab.SetDlg<VytAntiVirusDlg>(IDD_ANTIVIRUS, vyt::Str(IDS_ANTIVIRUS));
 	m_hometab.SetDlg<VytServiceDlg>(IDD_SERVICE, vyt::Str(IDS_SERVICEMGR));
@@ -79,7 +80,6 @@ void CVytHugDlg::InitUI()
 	m_hometab.SetDlg<VytWindowsDlg>(IDD_WINDOWS, vyt::Str(IDS_WINDOWMGR));
 	m_hometab.SetDlg<VytTaskManagerDlg>(IDD_TASKMANAGER, vyt::Str(IDS_TASKMGR));
 	m_hometab.SetDlg<VytTediousDlg>(IDD_TEDIOUS, vyt::Str(IDS_TEDIOUS));
-	m_hometab.SetDlg<VytPeLoaderDlg>(IDD_PELOADER, vyt::Str(IDS_PELOADER));
 	m_hometab.SeeDlg(0);
 	RegisterHotKey(GetSafeHwnd(), HideShowHotKey, MOD_CONTROL | MOD_ALT, 'H');
 	RegisterHotKey(GetSafeHwnd(), QuickQuitHotKey, MOD_CONTROL | MOD_ALT, 'Q');

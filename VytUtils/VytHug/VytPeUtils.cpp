@@ -210,9 +210,9 @@ bool vyt::PeUtils::ForeachResourceTable(std::function<void(ResourceField)> resou
 				if (itemEntry->DataIsDirectory)
 				{
 					PIMAGE_RESOURCE_DIRECTORY itemDirectory = (PIMAGE_RESOURCE_DIRECTORY)(itemEntry->OffsetToDirectory + (DWORD)rootDirectory);
-					assert(1 == (itemDirectory->NumberOfIdEntries + itemDirectory->NumberOfNamedEntries));
+					ASSERT(1 == (itemDirectory->NumberOfIdEntries + itemDirectory->NumberOfNamedEntries));
 					PIMAGE_RESOURCE_DIRECTORY_ENTRY dataEntry = (PIMAGE_RESOURCE_DIRECTORY_ENTRY)(itemDirectory + 1);
-					assert(FALSE == dataEntry->DataIsDirectory);
+					ASSERT(FALSE == dataEntry->DataIsDirectory);
 					PIMAGE_RESOURCE_DATA_ENTRY pData = (PIMAGE_RESOURCE_DATA_ENTRY)(dataEntry->OffsetToData + (DWORD)rootDirectory);
 					dataAction(pData);
 				}

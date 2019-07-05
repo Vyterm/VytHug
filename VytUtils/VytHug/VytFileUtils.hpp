@@ -21,6 +21,7 @@ namespace vyt
 		static CString FileSizeByPath(CString path);
 		static CString FileNameByPath(CString path);
 		static CString FileNameByName(CString name);
+		static bool CopyToClipboard(CString str, CWnd *owner = nullptr);
 	};
 }
 

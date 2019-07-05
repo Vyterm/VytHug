@@ -48,6 +48,8 @@ BEGIN_MESSAGE_MAP(VytCleanerDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_CL_SCANEXP, &VytCleanerDlg::OnBnClickedClScanexp)
 	ON_BN_CLICKED(IDC_CL_DROPTRASH, &VytCleanerDlg::OnBnClickedClDroptrash)
 	ON_WM_DROPFILES()
+	ON_NOTIFY(NM_RCLICK, IDC_CL_FILELIST, &VytCleanerDlg::OnRclickClFilelist)
+	ON_COMMAND(ID_CL_COPYMD5, &VytCleanerDlg::OnCopymd5)
 END_MESSAGE_MAP()
 
 
@@ -122,4 +124,21 @@ void VytCleanerDlg::OnDropFiles(HDROP hDropInfo)
 	}, true);
 
 	CDialogEx::OnDropFiles(hDropInfo);
+}
+
+
+void VytCleanerDlg::OnRclickClFilelist(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	*pResult = 0;
+	m_selectFileIndex = pNMItemActivate->iItem;
+	if (-1 == m_selectFileIndex) return;
+	TrackMenu(IDR_CL_TRACKMENU, 0);
+}
+
+
+void VytCleanerDlg::OnCopymd5()
+{
+	CString str = m_filelist.GetItemText(m_selectFileIndex, 6);
+	vyt::FileUtils::CopyToClipboard(str, this);
 }

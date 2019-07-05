@@ -17,6 +17,8 @@ public:
 #endif
 
 private:
+	int m_selectFileIndex;
+private:
 	void RefreshFiles(std::function<bool(const CString&, WIN32_FIND_DATA&)> fileFilter = nullptr, bool isDeeply = false);
 
 protected:
@@ -32,4 +34,6 @@ public:
 	afx_msg void OnBnClickedClScanexp();
 	afx_msg void OnBnClickedClDroptrash();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
+	afx_msg void OnRclickClFilelist(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnCopymd5();
 };

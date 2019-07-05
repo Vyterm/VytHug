@@ -179,4 +179,18 @@ namespace vyt
 	{
 		return name.Left(name.GetLength() - name.ReverseFind(_T('.')) - 1);
 	}
+	bool FileUtils::CopyToClipboard(CString str, CWnd * owner)
+	{
+		auto len = (str.GetLength() + 1) * sizeof(TCHAR);
+		HGLOBAL mem = GlobalAlloc(GMEM_MOVEABLE, len);
+		LPTSTR lpStr = (LPTSTR)GlobalLock(mem);
+		memcpy(lpStr, str, len);
+		OpenClipboard(owner->GetSafeHwnd());
+		EmptyClipboard();
+		SetClipboardData(CF_UNICODETEXT, lpStr);
+		CloseClipboard();
+		GlobalUnlock(mem);
+		GlobalFree(mem);
+		return false;
+	}
 }
